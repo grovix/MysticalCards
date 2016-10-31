@@ -1,13 +1,13 @@
 // режим добавления карточки:
+// считать слово;
+// добавить перевод;
 // добавить карточку;
-// перевести слово;
-// добавить перевод вручную;
 // добавить слово в архив
 
 interface iAdditionOfCard {
-    void toAddCard(/*word*/);
-    String toTranstale(/*word*/);
+    void toReadWord();
     void toAddTranslation();
+    void toAddCard();
     void toArchive();
     //void getFromSpecialFile();
     //void getFromText();
