@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_test_dictionary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".TestDictionaryActivity">
+    <Button
+        android:id="@+id/addWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:text="Добавить слово" />
+
+    <Button
+        android:text="Первая коробка"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/box1"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/addWord"
+        android:layout_alignRight="@+id/addWord"
+        android:layout_alignEnd="@+id/addWord" />
+
+    <Button
+        android:text="Архив"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:id="@+id/archive"
+        android:layout_below="@+id/box1"
+        android:layout_alignLeft="@+id/box1"
+        android:layout_alignStart="@+id/box1"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp" />
+</RelativeLayout>
