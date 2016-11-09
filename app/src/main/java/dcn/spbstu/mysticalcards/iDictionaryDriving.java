@@ -3,8 +3,10 @@ package dcn.spbstu.mysticalcards;// режим управления словар
 // загрузка нового словаря;
 // удаление словаря
 
+import java.util.ArrayList;
+
 interface iDictionaryDriving {
-    void showListOfDictionaries();
-    void loadNewDictionary();
-    void removeDictionary();
+    ArrayList<String> getListOfDictionaries();//void showListOfDictionaries();
+    //void loadNewDictionary(String name);
+    void removeDictionary(String name);
 }

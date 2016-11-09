@@ -16,14 +16,23 @@ import java.util.TreeMap;
  */
 
 public class Dictionary{
+
     String name_;
-    static volatile Map<String, String[]> map_ = new TreeMap<>();
+    Map<String, String[]> map_ = new TreeMap<>();
 
     public Dictionary(){
     }
 
+    public Dictionary(String name){
+        name_ = name;
+    }
+
     public String getName(){
         return name_;
+    }
+
+    public Map<String, String[]> getMap(){
+        return map_;
     }
 
     public void setName(String name){

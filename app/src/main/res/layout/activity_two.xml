@@ -30,7 +30,7 @@
             android:id="@+id/editText" />
 
         <Button
-            android:text="Найти в словаре"
+            android:text="Найти в словарях"
             android:layout_width="166dp"
             android:layout_height="wrap_content"
             android:id="@+id/findWord" />

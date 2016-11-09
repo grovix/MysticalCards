@@ -22,13 +22,17 @@ public class TestDictionaryActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_dictionary);
 
-        Dictionary dictionary = new Dictionary();
-        dictionary.setName("slovar.txt");
-
-        try {
-            dictionary.read(this);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(DictionarySet.dictionaries.isEmpty()) {
+            Dictionary dictionary = new Dictionary();
+            dictionary.setName("slovar.txt");
+            DictionarySet.dictionaries.add(dictionary);
+            for (int i = 0; i <  DictionarySet.dictionaries.size(); i++) {
+                try {
+                    DictionarySet.dictionaries.get(i).read(this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         if(Storage.cards_.isEmpty() && Storage.archive_.isEmpty()) {
