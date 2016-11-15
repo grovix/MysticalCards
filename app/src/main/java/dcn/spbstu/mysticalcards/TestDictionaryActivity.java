@@ -15,6 +15,7 @@ public class TestDictionaryActivity extends AppCompatActivity implements View.On
     Button archive;
 
     Storage storage = new Storage();
+    Forms forms = new Forms();
 
 
     @Override
@@ -33,6 +34,14 @@ public class TestDictionaryActivity extends AppCompatActivity implements View.On
                     e.printStackTrace();
                 }
             }
+        }
+        if(Forms.forms_.isEmpty()) {
+           try{
+               forms.readForms(this);
+           }
+           catch (IOException e) {
+               e.printStackTrace();
+           }
         }
 
         if(Storage.cards_.isEmpty() && Storage.archive_.isEmpty()) {
@@ -58,6 +67,11 @@ public class TestDictionaryActivity extends AppCompatActivity implements View.On
             }
             try {
                 storage.writeArchive(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try{
+                forms.writeForms(this);
             } catch (IOException e) {
                 e.printStackTrace();
             }
