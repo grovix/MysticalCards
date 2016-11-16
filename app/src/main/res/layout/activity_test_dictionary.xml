@@ -41,4 +41,16 @@
         android:layout_alignStart="@+id/box1"
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp" />
+
+    <Button
+        android:text="Список форм"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:id="@+id/formsSet"
+        android:layout_below="@+id/archive"
+        android:layout_alignLeft="@+id/box1"
+        android:layout_alignStart="@+id/box1"
+        android:layout_alignRight="@+id/box1"
+        android:layout_alignEnd="@+id/box1" />
 </RelativeLayout>

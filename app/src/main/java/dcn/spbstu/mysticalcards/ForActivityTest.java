@@ -4,16 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import dcn.spbstu.mysticalcards.MainActivity;
-import dcn.spbstu.mysticalcards.R;
+import android.widget.ListView;
 
 public class ForActivityTest extends AppCompatActivity implements View.OnClickListener{
 
-    LinearLayout linearLayout2;
     Button back3;
 
     @Override
@@ -21,14 +18,15 @@ public class ForActivityTest extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_for);
 
-        linearLayout2 = (LinearLayout) findViewById(R.id.linlay2);
 
+        String[] arr = new String[Storage.archive_.size()];
         for(int i = 0; i < Storage.archive_.size(); i++){
-            TextView txtv = new TextView(this);
-            txtv.setText(Storage.archive_.get(i).en_);
-            txtv.setId(i);
-            linearLayout2.addView(txtv);
+            arr[i] = Storage.archive_.get(i).en_;
         }
+        ListView lv = (ListView) findViewById(R.id.lv);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, arr);
+        lv.setAdapter(adapter);
 
         back3 = (Button) findViewById(R.id.back3);
         back3.setOnClickListener(this);

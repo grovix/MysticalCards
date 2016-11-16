@@ -10,12 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ForActivityTest">
 
-    <Button
-        android:text="Назад"
-        android:layout_width="151dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/back3" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -23,7 +17,23 @@
         android:id="@+id/linlay2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/back3">
+        android:layout_below="@+id/back4"
+        android:weightSum="1">
 
+        <Button
+            android:text="Назад"
+            android:layout_width="171dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/back3"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="342dp"
+            android:id="@+id/lv"
+            android:layout_weight="0.85" />
     </LinearLayout>
+
 </RelativeLayout>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MysticalCards</string>
+    <string name="title_activity_five_test">FiveActivityTest</string>
 </resources>

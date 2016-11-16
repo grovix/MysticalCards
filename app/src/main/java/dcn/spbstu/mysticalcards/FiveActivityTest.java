@@ -6,36 +6,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
-public class ThreeActivityTest extends AppCompatActivity implements View.OnClickListener {
+import java.util.Map;
 
-    Button back2;
+public class FiveActivityTest extends AppCompatActivity  implements View.OnClickListener{
+
+    Button back4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_three);
+        setContentView(R.layout.activity_five);
 
-        String[] arr = new String[Storage.cards_.size()];
-        for(int i = 0; i < Storage.cards_.size(); i++){
-            arr[i] = Storage.cards_.get(i).getEn() + " - " + Storage.cards_.get(i).getRu();
+        String[] arr = new String[Forms.forms_.size()];
+        int i = 0;
+        for (Map.Entry<String, String> entry : Forms.forms_.entrySet()) {
+            arr[i] = entry.getKey() + " - " + entry.getValue();
+            i++;
         }
-        ListView lv = (ListView) findViewById(R.id.lv_2);
+        ListView lv = (ListView) findViewById(R.id.lv_1);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, arr);
         lv.setAdapter(adapter);
 
-        back2 = (Button) findViewById(R.id.back2);
-        back2.setOnClickListener(this);
+        back4 = (Button) findViewById(R.id.back4);
+        back4.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v){
         switch (v.getId()) {
-            case R.id.back2:
+            case R.id.back4:
                 Intent intent3 = new Intent(this, TestDictionaryActivity.class);
                 startActivity(intent3);
                 break;
@@ -43,4 +45,5 @@ public class ThreeActivityTest extends AppCompatActivity implements View.OnClick
                 break;
         }
     }
+
 }

@@ -13,6 +13,7 @@ public class TestDictionaryActivity extends AppCompatActivity implements View.On
     Button addWord;
     Button box1;
     Button archive;
+    Button formsSet;
 
     Storage storage = new Storage();
     Forms forms = new Forms();
@@ -83,6 +84,9 @@ public class TestDictionaryActivity extends AppCompatActivity implements View.On
         box1 = (Button) findViewById(R.id.box1);
         box1.setOnClickListener(this);
 
+        formsSet = (Button) findViewById(R.id.formsSet);
+        formsSet.setOnClickListener(this);
+
         archive = (Button) findViewById(R.id.archive);
         archive.setOnClickListener(this);
     }
@@ -101,6 +105,10 @@ public class TestDictionaryActivity extends AppCompatActivity implements View.On
             case R.id.archive:
                 Intent intent3 = new Intent(this, ForActivityTest.class);
                 startActivity(intent3);
+                break;
+            case R.id.formsSet:
+                Intent intent4 = new Intent(this, FiveActivityTest.class);
+                startActivity(intent4);
                 break;
             default:
                 break;
