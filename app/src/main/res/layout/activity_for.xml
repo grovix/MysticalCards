@@ -31,9 +31,9 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="342dp"
+            android:layout_height="194dp"
             android:id="@+id/lv"
-            android:layout_weight="0.85" />
+            android:clickable="false" />
     </LinearLayout>
 
 </RelativeLayout>

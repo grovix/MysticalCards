@@ -18,7 +18,6 @@ public class TestDictionaryActivity extends AppCompatActivity implements View.On
     Storage storage = new Storage();
     Forms forms = new Forms();
 
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +95,8 @@ public class TestDictionaryActivity extends AppCompatActivity implements View.On
         switch (v.getId()) {
             case R.id.addWord:
                 Intent intent1 = new Intent(this, TwoActivityTest.class);
+                intent1.putExtra("name", "".toString());
+                intent1.putExtra("index", 0);
                 startActivity(intent1);
                 break;
             case R.id.box1:

@@ -19,12 +19,12 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class Forms {
-    volatile static Map<String, String> forms_ = new TreeMap<>(); // <слово, формы>
+    volatile static Map<String, String[]> forms_ = new TreeMap<>(); // <слово, формы>
 
     public Forms() {
     }
 
-    public Map<String, String> getMap() {
+    public Map<String, String[]> getMap() {
         return forms_;
     }
 
@@ -36,17 +36,22 @@ public class Forms {
         while ((line = reader.readLine()) != null) {
             list.add(line);
         }
-        for(int j = 0; j < list.size(); j++) {
+        Map<String, String> map = new TreeMap<>();
+        for (int j = 0; j < list.size(); j++) {
             String[] arrayMessage = list.get(j).split(" : ");
-            forms_.put(arrayMessage[0], arrayMessage[1]);
+            map.put(arrayMessage[0], arrayMessage[1]);
+        }
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String[] forms = entry.getValue().split("; ");
+            forms_.put(entry.getKey(), forms);
         }
     }
 
     public void writeForms(Context context) throws IOException {
         BufferedWriter pw;
         pw = new BufferedWriter(new OutputStreamWriter(context.openFileOutput("forms", MODE_PRIVATE)));
-        for (Map.Entry<String, String> entry : forms_.entrySet()) {
-            String[] forms = entry.getValue().split("; ");
+        for (Map.Entry<String, String[]> entry : forms_.entrySet()) {
+            String[] forms = entry.getValue();
             if (forms.length != 1) {
                 pw.write(entry.getKey() + " : ");
                 for (int i = 0; i < forms.length - 1; i++) {
@@ -61,88 +66,66 @@ public class Forms {
         }
         pw.close();
     }
-
     public void setForms_(String word) {
-        String str_1 = "";
+        List<String> str_1 = new ArrayList();
         // окончание -s
         if (word.endsWith("x") || word.endsWith("s") || word.endsWith("z") || word.endsWith("ch") || word.endsWith("sh") || word.endsWith("o")) {
-            if(str_1.equals("")){
-            str_1 = word + "es";
-            }
-            else{
-                str_1 = str_1 + "; "+word + "es";
-            }
+            str_1.add(word + "es");
         } else {
             if (word.endsWith("y")) {
                 if (!word.endsWith("ey") && !word.endsWith("uy") && !word.endsWith("iy") && !word.endsWith("oy") && !word.endsWith("ay")) {
-                    if(str_1.equals("")) {
-                        str_1 = word.substring(0, word.toCharArray()[word.length() - 2]) + "ies";
-                    }
-                    else{
-                        str_1 = str_1 + "; " + word.substring(0, word.toCharArray()[word.length() - 2]) + "ies";
-                    }
+                    str_1.add(word.substring(0, word.toCharArray()[word.length() - 2]) + "ies");
                 }
             } else {
                 if ((word.endsWith("f") || word.endsWith("fe"))) {
-                    if(str_1.equals("")) {
-                    str_1 = word.substring(0, word.toCharArray()[word.length() - 2]) + "ves";
-                    }
-                    else{
-                        str_1 = str_1 + "; " + word.substring(0, word.toCharArray()[word.length() - 2]) + "ves";
-                    }
+                    str_1.add(word.substring(0, word.toCharArray()[word.length() - 2]) + "ves");
                 } else {
                     if (word.endsWith("man")) {
-                        if(str_1.equals("")) {
-                            str_1 = word.substring(0, word.toCharArray()[word.length() - 3]) + "en";
-                        }
-                        else{
-                            str_1 = str_1 + "; " +  word.substring(0, word.toCharArray()[word.length() - 3]) + "en";
-                        }
+                        str_1.add(word.substring(0, word.toCharArray()[word.length() - 3]) + "en");
                     } else {
-                        if(str_1.equals("")){
-                        str_1 = word + "s";
-                        }
-                        else{
-                            str_1 = str_1 + "; " + word + "s";
+                            str_1.add(word + "s");
                         }
                     }
                 }
             }
-        }
         // окончание ed и ing
         if (word.endsWith("e")) {
-            str_1 = str_1 + "; " + word + "d";
+            str_1.add(str_1 + "; " + word + "d");
             if (word.endsWith("ie")) {
-                str_1 = str_1 + "; " + word.substring(0, word.toCharArray()[word.length() - 3]) + "ying";
+                str_1.add(word.substring(0, word.toCharArray()[word.length() - 3]) + "ying");
             } else {
                 if (word.endsWith("ee")) {
-                    str_1 = str_1 + "; " + word.substring(0, word.toCharArray()[word.length() - 3]) + "ing";
+                    str_1.add(word.substring(0, word.toCharArray()[word.length() - 3]) + "ing");
                 } else {
-                    str_1 = str_1 + "; " + word.substring(0, word.toCharArray()[word.length() - 2]) + "ing";
+                    str_1.add(word.substring(0, word.toCharArray()[word.length() - 2]) + "ing");
                 }
             }
         } else {
             if (word.endsWith("d") || word.endsWith("p") || word.endsWith("t") || word.endsWith("r") || word.endsWith("l") || word.endsWith("b") || word.endsWith("g")) {
-                str_1 = str_1 + "; " + word + "ed";
-                str_1 = str_1 + "; " + word + word.toCharArray()[word.length() - 1] + "ed";
-                str_1 = str_1 + "; " + word + word.toCharArray()[word.length() - 1] + "ing";
+                str_1.add(word + "ed");
+                str_1.add(word + word.toCharArray()[word.length() - 1] + "ed");
+                str_1.add(word + word.toCharArray()[word.length() - 1] + "ing");
             } else {
                 if (word.endsWith("n")) {
-                    str_1 = str_1 + "; " + word + word.toCharArray()[word.length() - 1] + "ing";
+                    str_1.add(word + word.toCharArray()[word.length() - 1] + "ing");
                 }
-                str_1 = str_1 + "; " + word + "ing";
+                str_1.add(word + "ing");
                 if (word.endsWith("y")) {
-                    str_1 = str_1 + "; " + word.substring(0, word.toCharArray()[word.length() - 2]) + "ied";
-                    str_1 = str_1 + "; " + word + "ed";
+                    str_1.add(word.substring(0, word.toCharArray()[word.length() - 2]) + "ied");
+                    str_1.add(word + "ed");
                 } else {
-                    str_1 = str_1 + "; " + word + "ed";
+                    str_1.add(word + "ed");
                 }
             }
         }
         // 's
-        str_1 = str_1 + "; " + word + "'s";
-        str_1 = str_1 + "; " + word + "'";
-        forms_.put(word, str_1);
+        str_1.add(word + "'s");
+        str_1.add(word + "'");
+        String[] strings = new String[str_1.size()];
+        for(int i = 0; i < str_1.size(); i++){
+            strings[i] = str_1.get(i);
+        }
+        forms_.put(word, strings);
     }
 
 }

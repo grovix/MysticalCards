@@ -1,5 +1,6 @@
 package dcn.spbstu.mysticalcards;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.Map;
+
 
 public class FiveActivityTest extends AppCompatActivity  implements View.OnClickListener{
 
@@ -21,8 +23,12 @@ public class FiveActivityTest extends AppCompatActivity  implements View.OnClick
 
         String[] arr = new String[Forms.forms_.size()];
         int i = 0;
-        for (Map.Entry<String, String> entry : Forms.forms_.entrySet()) {
-            arr[i] = entry.getKey() + " - " + entry.getValue();
+        for (Map.Entry<String, String[]> entry : Forms.forms_.entrySet()) {
+            arr[i] = entry.getKey() + " - ";
+            for(int j = 0; j < entry.getValue().length - 1; j++){
+                arr[i] = arr[i] + entry.getValue()[j] + "; ";
+            }
+            arr[i] = arr[i] + entry.getValue()[entry.getValue().length - 1];
             i++;
         }
         ListView lv = (ListView) findViewById(R.id.lv_1);

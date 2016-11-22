@@ -10,9 +10,6 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import dcn.spbstu.mysticalcards.Card;
-import dcn.spbstu.mysticalcards.iAdditionOfCard;
-import dcn.spbstu.mysticalcards.iArchive;
 
 import static android.content.Context.MODE_PRIVATE;
 

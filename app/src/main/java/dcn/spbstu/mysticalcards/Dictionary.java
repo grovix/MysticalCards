@@ -52,14 +52,14 @@ public class Dictionary{
         while ((line = reader.readLine()) != null) {
             list.add(line);
         }
-
-        for(int j = 0; j < list.size(); j++) {
+        Map<String, String> map = new TreeMap<>();
+        for (int j = 0; j < list.size(); j++) {
             String[] arrayMessage = list.get(j).split(" : ");
-            String[] translations = new String[arrayMessage.length - 1];
-            for(int i = 1; i < arrayMessage.length; i++){
-                translations[i - 1] = arrayMessage[i];
-            }
-            map_.put(arrayMessage[0],translations);
+            map.put(arrayMessage[0], arrayMessage[1]);
+        }
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String[] translations = entry.getValue().split("; ");
+            map_.put(entry.getKey(), translations);
         }
     }
 
