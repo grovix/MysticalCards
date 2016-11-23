@@ -15,10 +15,14 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class Storage implements iAdditionOfCard, iArchive {
 
-    static volatile ArrayList<Card> cards_ = new ArrayList<Card>();
-    static volatile ArrayList<Card> archive_  = new ArrayList<Card>();
+    static volatile List<Card> cards_ = new ArrayList<Card>();
+    static volatile List<Card> archive_  = new ArrayList<Card>();
 
     public Storage() {
+    }
+
+    public Card getCard(int i){
+        return cards_.get(i);
     }
 
     public void readBox(int box, Context context) throws IOException {

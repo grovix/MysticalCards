@@ -12,14 +12,14 @@ import android.widget.ListView;
 import java.util.Map;
 
 
-public class FiveActivityTest extends AppCompatActivity  implements View.OnClickListener{
+public class FormsActivity extends AppCompatActivity  implements View.OnClickListener{
 
     Button back4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_five);
+        setContentView(R.layout.activity_forms);
 
         String[] arr = new String[Forms.forms_.size()];
         int i = 0;
@@ -44,7 +44,7 @@ public class FiveActivityTest extends AppCompatActivity  implements View.OnClick
     public void onClick(View v){
         switch (v.getId()) {
             case R.id.back4:
-                Intent intent3 = new Intent(this, TestDictionaryActivity.class);
+                Intent intent3 = new Intent(this, MainActivity.class);
                 startActivity(intent3);
                 break;
             default:

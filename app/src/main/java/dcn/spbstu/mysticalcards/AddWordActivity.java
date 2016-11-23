@@ -12,23 +12,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Map;
 
-public class TwoActivityTest extends AppCompatActivity implements View.OnClickListener {
+public class AddWordActivity extends AppCompatActivity implements View.OnClickListener {
 
     Forms forms = new Forms();
-
-    //EditText editText = (EditText) findViewById(R.id.editText);
     String str1 = new String();
-    int index = 0;
+    int index = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_two);
+        setContentView(R.layout.activity_add_word);
 
         str1 = getIntent().getStringExtra("name");
         EditText editText = (EditText) findViewById(R.id.editText);
@@ -91,7 +87,13 @@ public class TwoActivityTest extends AppCompatActivity implements View.OnClickLi
                                         for (int k = 1; k <= translations.length; k++) {
                                             if (word.equals(String.valueOf(k))) {
                                                 Card card = new Card(1, str, translations[k - 1]);
-                                                if (Storage.cards_.contains(card)) {
+                                                int r = 0;
+                                                for(int i = 0; i < Storage.cards_.size();i++){
+                                                    if(Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(translations[k - 1])){
+                                                        r = 1;
+                                                    }
+                                                }
+                                                if (r == 1) {
                                                     Toast toast = Toast.makeText(getApplicationContext(),
                                                             "Такое слово уже есть среди карточек", Toast.LENGTH_SHORT);
                                                     toast.show();
@@ -158,7 +160,13 @@ public class TwoActivityTest extends AppCompatActivity implements View.OnClickLi
                                 String word = editText2.getText().toString();
                                 if (!word.equals("")) {
                                     Card card = new Card(1, str, word);
-                                    if (Storage.cards_.contains(card)) {
+                                    int r = 0;
+                                    for(int i = 0; i < Storage.cards_.size();i++){
+                                        if(Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(word)){
+                                            r = 1;
+                                        }
+                                    }
+                                    if (r == 1) {
                                         Toast toast = Toast.makeText(getApplicationContext(),
                                                 "Такое слово уже есть среди карточек", Toast.LENGTH_SHORT);
                                         toast.show();
@@ -215,7 +223,7 @@ public class TwoActivityTest extends AppCompatActivity implements View.OnClickLi
                 }
                 break;
             case R.id.back:
-                Intent intent = new Intent(this, TestDictionaryActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
             default:

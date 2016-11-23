@@ -74,14 +74,14 @@ public class Forms {
         } else {
             if (word.endsWith("y")) {
                 if (!word.endsWith("ey") && !word.endsWith("uy") && !word.endsWith("iy") && !word.endsWith("oy") && !word.endsWith("ay")) {
-                    str_1.add(word.substring(0, word.toCharArray()[word.length() - 2]) + "ies");
+                    str_1.add(word.substring(0, word.length() - 2) + "ies");
                 }
             } else {
                 if ((word.endsWith("f") || word.endsWith("fe"))) {
-                    str_1.add(word.substring(0, word.toCharArray()[word.length() - 2]) + "ves");
+                    str_1.add(word.substring(0, word.length() - 2) + "ves");
                 } else {
                     if (word.endsWith("man")) {
-                        str_1.add(word.substring(0, word.toCharArray()[word.length() - 3]) + "en");
+                        str_1.add(word.substring(0, word.length() - 3) + "en");
                     } else {
                             str_1.add(word + "s");
                         }
@@ -92,12 +92,12 @@ public class Forms {
         if (word.endsWith("e")) {
             str_1.add(str_1 + "; " + word + "d");
             if (word.endsWith("ie")) {
-                str_1.add(word.substring(0, word.toCharArray()[word.length() - 3]) + "ying");
+                str_1.add(word.substring(0, word.length() - 3) + "ying");
             } else {
                 if (word.endsWith("ee")) {
-                    str_1.add(word.substring(0, word.toCharArray()[word.length() - 3]) + "ing");
+                    str_1.add(word.substring(0, word.length() - 3) + "ing");
                 } else {
-                    str_1.add(word.substring(0, word.toCharArray()[word.length() - 2]) + "ing");
+                    str_1.add(word.substring(0, word.length() - 2) + "ing");
                 }
             }
         } else {
@@ -105,13 +105,14 @@ public class Forms {
                 str_1.add(word + "ed");
                 str_1.add(word + word.toCharArray()[word.length() - 1] + "ed");
                 str_1.add(word + word.toCharArray()[word.length() - 1] + "ing");
+                str_1.add(word + "ing");
             } else {
                 if (word.endsWith("n")) {
                     str_1.add(word + word.toCharArray()[word.length() - 1] + "ing");
                 }
                 str_1.add(word + "ing");
                 if (word.endsWith("y")) {
-                    str_1.add(word.substring(0, word.toCharArray()[word.length() - 2]) + "ied");
+                    str_1.add(word.substring(0, word.length() - 2) + "ied");
                     str_1.add(word + "ed");
                 } else {
                     str_1.add(word + "ed");

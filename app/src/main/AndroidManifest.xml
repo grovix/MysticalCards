@@ -8,20 +8,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TestDictionaryActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TwoActivityTest" />
-        <activity android:name=".ThreeActivityTest" />
-        <activity android:name=".ForActivityTest" />
-        <activity
-            android:name=".FiveActivityTest"
-            android:label="@string/title_activity_five_test"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".AddWordActivity" />
+        <activity android:name=".BoxActivity" />
+        <activity android:name=".ArchiveActivity" />
+        <activity android:name=".DictionarySetActivity" />
+        <activity android:name=".StorageActivity"></activity>
     </application>
 
 </manifest>

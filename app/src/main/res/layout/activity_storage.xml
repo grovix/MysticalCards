@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_storage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="dcn.spbstu.mysticalcards.StorageActivity">
+
+    <Button
+        android:text="Третья коробка"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:id="@+id/box_3"
+        android:layout_below="@+id/box_2"
+        android:layout_alignRight="@+id/box_2"
+        android:layout_alignEnd="@+id/box_2" />
+
+    <Button
+        android:text="Вторая коробка"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:id="@+id/box_2"
+        android:layout_below="@+id/box_1"
+        android:layout_alignLeft="@+id/box_1"
+        android:layout_alignStart="@+id/box_1" />
+
+    <Button
+        android:text="Пятая коробка"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/box_5"
+        android:layout_below="@+id/box_4"
+        android:layout_alignRight="@+id/box_3"
+        android:layout_alignEnd="@+id/box_3" />
+
+    <Button
+        android:text="Первая коробка"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="85dp"
+        android:layout_marginStart="85dp"
+        android:id="@+id/box_1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Четвертая коробка"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/box_4"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/box_3"
+        android:layout_alignLeft="@+id/box_2"
+        android:layout_alignStart="@+id/box_2" />
+
+    <Button
+        android:text="Архив"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/box_5"
+        android:layout_alignRight="@+id/box_5"
+        android:layout_alignEnd="@+id/box_5"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="26dp"
+        android:id="@+id/archive" />
+
+    <Button
+        android:text="Главное меню"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainMenu"
+        android:layout_marginBottom="11dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp" />
+</RelativeLayout>

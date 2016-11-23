@@ -9,8 +9,38 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dcn.spbstu.mysticalcards.MainActivity">
 
-    <TextView
+    <Button
+        android:text="Добавить слово"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_marginTop="53dp"
+        android:id="@+id/addWord"
+        android:layout_below="@+id/setDictionary"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Список загруженных словарей"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/setDictionary"
+        android:layout_below="@+id/training"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Тренировка"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/training"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Хранилище карточек"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/storage"
+        android:layout_marginTop="62dp"
+        android:layout_below="@+id/addWord"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
