@@ -27,9 +27,14 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_box);
 
         box = getIntent().getIntExtra("num", 0);
+        int count = 0;
+        for (int i = 0; i < Storage.cards_.size(); i++){
+            if (Storage.cards_.get(i).getBox() == box){
+                count++;
+            }
+        }
 
-
-        String[] arr = new String[Storage.cards_.size()];
+        String[] arr = new String[count];
         for (int i = 0; i < Storage.cards_.size(); i++) {
             if (Storage.cards_.get(i).getBox() == box) {
                 arr[i] = Storage.cards_.get(i).getEn() + " - " + Storage.cards_.get(i).getRu();
@@ -61,9 +66,11 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
                 switch (item.getItemId()) {
                     case R.id.menu1:
                         Storage.cards_.remove(cards[position]);
+                        Forms.forms_.remove(cards[position].en_);
                         Toast.makeText(getApplicationContext(),
                                 "Слово удалено",
                                 Toast.LENGTH_SHORT).show();
+                        finish();
                         Intent intent = getIntent();
                         startActivity(intent);
                         return true;
@@ -80,8 +87,9 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back2:
-                Intent intent3 = new Intent(this, StorageActivity.class);
-                startActivity(intent3);
+                finish();
+                //Intent intent3 = new Intent(this, StorageActivity.class);
+                //startActivity(intent3);
                 break;
             default:
                 break;

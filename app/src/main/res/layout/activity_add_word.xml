@@ -10,14 +10,28 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AddWordActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/linl"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:text="EN|RU"
+            android:layout_width="178dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="31dp"
+            android:layout_marginStart="31dp"
+            android:id="@+id/direction" />
 
         <TextView
-            android:text="Введите слово"
+            android:text="Введите слово на английском языке"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/lable" />
@@ -43,7 +57,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="296dp"
+            android:layout_height="278dp"
             android:id="@+id/linl2">
 
             <ListView
@@ -54,7 +68,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="153dp"
                 android:id="@+id/linl1">
 
             </LinearLayout>
@@ -68,4 +82,5 @@
             android:id="@+id/back" />
 
     </LinearLayout>
+
 </RelativeLayout>

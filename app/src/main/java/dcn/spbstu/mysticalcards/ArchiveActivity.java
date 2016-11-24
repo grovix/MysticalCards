@@ -12,7 +12,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ArchiveActivity extends AppCompatActivity implements View.OnClickListener{
+import java.io.IOException;
+
+public class ArchiveActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button back3;
 
@@ -23,8 +25,12 @@ public class ArchiveActivity extends AppCompatActivity implements View.OnClickLi
 
 
         String[] arr = new String[Storage.archive_.size()];
-        for(int i = 0; i < Storage.archive_.size(); i++){
-            arr[i] = Storage.archive_.get(i).en_;
+        for (int i = 0; i < Storage.archive_.size(); i++) {
+            if (Storage.archive_.get(i).ru_.equals("")) {
+                arr[i] = Storage.archive_.get(i).en_;
+            } else {
+                arr[i] = Storage.archive_.get(i).ru_;
+            }
         }
         ListView lv = (ListView) findViewById(R.id.lv);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -53,13 +59,19 @@ public class ArchiveActivity extends AppCompatActivity implements View.OnClickLi
                         Toast.makeText(getApplicationContext(),
                                 "Слово удалено",
                                 Toast.LENGTH_SHORT).show();
+                        finish();
                         Intent intent = getIntent();
                         startActivity(intent);
                         return true;
                     case R.id.menu2:
-                        intent2.putExtra("name", Storage.archive_.get(position).en_.toString());
+                        if (Storage.archive_.get(position).ru_.equals("")) {
+                            intent2.putExtra("name", Storage.archive_.get(position).en_.toString());
+                        } else {
+                            intent2.putExtra("name", Storage.archive_.get(position).ru_.toString());
+                        }
                         intent2.putExtra("index", position);
                         startActivity(intent2);
+                        finish();
                         return true;
                     default:
                         return false;
@@ -69,12 +81,12 @@ public class ArchiveActivity extends AppCompatActivity implements View.OnClickLi
 
         popupMenu.show();
     }
+
     @Override
-    public void onClick(View v){
+    public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back3:
-                Intent intent3 = new Intent(this, StorageActivity.class);
-                startActivity(intent3);
+                finish();
                 break;
             default:
                 break;

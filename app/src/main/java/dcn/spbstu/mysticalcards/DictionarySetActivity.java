@@ -24,7 +24,7 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
         backToMenu = (Button)findViewById(R.id.backToMenu);
         backToMenu.setOnClickListener(this);
 
-        String[] arr = new String[DictionarySet.dictionaries.size()];
+        String[] arr = new String[DictionarySet.dictionaries.size() - 1];
         for (int i = 1; i < DictionarySet.dictionaries.size(); i++) {
             arr[i] = DictionarySet.dictionaries.get(i).getName();
         }
@@ -69,8 +69,7 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.backToMenu:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                finish();
                 break;
             default:
                 break;

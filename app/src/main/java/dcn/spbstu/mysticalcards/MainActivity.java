@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button setDictionary;
     Button addWord;
     Button storage;
+    Button end;
 
     Storage storage1 = new Storage();
     Forms forms = new Forms();
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (Forms.forms_.isEmpty()) {
             try {
+                deleteFile("forms");
                 forms.readForms(this);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
+        } /*else {
             try {
                 storage1.writeBox(this);
             } catch (IOException e) {
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         training = (Button) findViewById(R.id.training);
         training.setOnClickListener(this);
 
@@ -84,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         storage = (Button) findViewById(R.id.storage);
         storage.setOnClickListener(this);
+
+        end = (Button) findViewById(R.id.end);
+        end.setOnClickListener(this);
     }
 
     @Override
@@ -105,6 +110,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent4 = new Intent(this, StorageActivity.class);
                 startActivity(intent4);
                 break;
+            case R.id.end:
+                /*try {
+                    storage1.writeBox(this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    storage1.writeArchive(this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    forms.writeForms(this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
+                finish();
             default:
                 break;
         }

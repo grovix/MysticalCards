@@ -20,6 +20,9 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
     Forms forms = new Forms();
     String str1 = new String();
     int index = -1;
+    Button direction;
+    Button back;
+    Button findWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,22 +31,19 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
 
         str1 = getIntent().getStringExtra("name");
         EditText editText = (EditText) findViewById(R.id.editText);
-        if(!str1.equals("")){
+        if (!str1.equals("")) {
             editText.setText(str1);
         }
         index = getIntent().getIntExtra("index", 0);
 
-        Button findWord = (Button) findViewById(R.id.findWord);
+        findWord = (Button) findViewById(R.id.findWord);
         findWord.setOnClickListener(this);
 
-        Button back = (Button) findViewById(R.id.back);
-        back.setOnClickListener(this);
+        direction = (Button) findViewById(R.id.direction);
+        direction.setOnClickListener(this);
 
-        try {
-            forms.readForms(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        back = (Button) findViewById(R.id.back);
+        back.setOnClickListener(this);
 
     }
 
@@ -86,10 +86,15 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                         String word = editText2.getText().toString();
                                         for (int k = 1; k <= translations.length; k++) {
                                             if (word.equals(String.valueOf(k))) {
-                                                Card card = new Card(1, str, translations[k - 1]);
+                                                Card card;
+                                                if (direction.getText().equals("EN|RU")) {
+                                                    card = new Card(1, str, translations[k - 1]);
+                                                } else {
+                                                    card = new Card(1, translations[k - 1], str);
+                                                }
                                                 int r = 0;
-                                                for(int i = 0; i < Storage.cards_.size();i++){
-                                                    if(Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(translations[k - 1])){
+                                                for (int i = 0; i < Storage.cards_.size(); i++) {
+                                                    if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(translations[k - 1])) {
                                                         r = 1;
                                                     }
                                                 }
@@ -111,13 +116,15 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                                     }
                                                     if (d != 1) {
                                                         Storage.cards_.add(card);
-                                                        if(str.equals(str1)){
+                                                        if (str.equals(str1)) {
                                                             Storage.archive_.remove(index);
                                                         }
                                                         Toast toast = Toast.makeText(getApplicationContext(),
                                                                 "Создана новая карточка", Toast.LENGTH_SHORT);
                                                         toast.show();
-                                                        forms.setForms_(str);
+                                                        if (direction.getText().equals("EN|RU")) {
+                                                            forms.setForms_(str);
+                                                        }
                                                     }
                                                 }
                                             }
@@ -131,8 +138,13 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                 addArchive.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        Card card = new Card(0, str, "");
-                                        if(!str.equals(str1)){
+                                        Card card;
+                                        if (direction.getText().equals("EN|RU")) {
+                                            card = new Card(0, str, "");
+                                        } else {
+                                            card = new Card(0, "", str);
+                                        }
+                                        if (!str.equals(str1)) {
                                             Storage.archive_.add(card);
                                         }
                                         Toast toast = Toast.makeText(getApplicationContext(),
@@ -159,10 +171,15 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                             public void onClick(View v) {
                                 String word = editText2.getText().toString();
                                 if (!word.equals("")) {
-                                    Card card = new Card(1, str, word);
+                                    Card card;
+                                    if (direction.getText().equals("EN|RU")) {
+                                        card = new Card(1, str, word);
+                                    } else {
+                                        card = new Card(1, word, str);
+                                    }
                                     int r = 0;
-                                    for(int i = 0; i < Storage.cards_.size();i++){
-                                        if(Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(word)){
+                                    for (int i = 0; i < Storage.cards_.size(); i++) {
+                                        if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(word)) {
                                             r = 1;
                                         }
                                     }
@@ -184,18 +201,25 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                         }
                                         if (d != 1) {
                                             Storage.cards_.add(card);
-                                            if(str.equals(str1)){
+                                            if (str.equals(str1)) {
                                                 Storage.archive_.remove(index);
                                             }
                                             Toast toast = Toast.makeText(getApplicationContext(),
                                                     "Создана новая карточка", Toast.LENGTH_SHORT);
                                             toast.show();
-                                            forms.setForms_(str);
+                                            if (direction.getText().equals("EN|RU")) {
+                                                forms.setForms_(str);
+                                            }
                                         }
                                     }
                                 } else {
-                                    Card card = new Card(0, str, "");
-                                    if(!str.equals(str1)){
+                                    Card card;
+                                    if (direction.getText().equals("EN|RU")) {
+                                        card = new Card(0, str, "");
+                                    } else {
+                                        card = new Card(0, "", str);
+                                    }
+                                    if (!str.equals(str1)) {
                                         Storage.archive_.add(card);
                                     }
                                     Toast toast = Toast.makeText(getApplicationContext(),
@@ -210,8 +234,13 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                         addArchive.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Card card = new Card(0, str, "");
-                                if(!str.equals(str1)){
+                                Card card;
+                                if (direction.getText().equals("EN|RU")) {
+                                    card = new Card(0, str, "");
+                                } else {
+                                    card = new Card(0, "", str);
+                                }
+                                if (!str.equals(str1)) {
                                     Storage.archive_.add(card);
                                 }
                                 Toast toast = Toast.makeText(getApplicationContext(),
@@ -223,9 +252,17 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 break;
             case R.id.back:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                finish();
                 break;
+            case R.id.direction:
+                TextView tv = (TextView) findViewById(R.id.lable);
+                if (direction.getText().equals("EN|RU")) {
+                    tv.setText("Введите слово на русском языке");
+                    direction.setText("RU|EN");
+                } else {
+                    tv.setText("Введите слово на английском языке");
+                    direction.setText("EN|RU");
+                }
             default:
                 break;
         }
