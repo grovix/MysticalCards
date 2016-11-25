@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/background_light"
     tools:context="dcn.spbstu.mysticalcards.MainActivity">
 
     <Button
@@ -24,16 +25,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:id="@+id/setDictionary"
-        android:layout_below="@+id/training"
+        android:layout_below="@+id/trainingActivity"
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Тренировка"
-        android:layout_width="wrap_content"
+        android:text="Начать тренировку"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/training"
+        android:id="@+id/trainingActivity"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
 
     <Button
         android:text="Хранилище карточек"

@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import java.io.IOException;
 
+import dcn.spbstu.mysticalcards.Training.ChooseTrainingActivity;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button training;
@@ -23,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button trainbtn = (Button) findViewById(R.id.trainingActivity);
+        trainbtn.setOnClickListener(this);
 
         if (DictionarySet.dictionaries.isEmpty()) {
             Dictionary dictionary = new Dictionary();
@@ -75,8 +80,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 e.printStackTrace();
             }
         }*/
-        training = (Button) findViewById(R.id.training);
-        training.setOnClickListener(this);
 
         setDictionary = (Button) findViewById(R.id.setDictionary);
         setDictionary.setOnClickListener(this);
@@ -94,7 +97,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.training:
+            case R.id.trainingActivity:
+                Intent intent = new Intent(this, ChooseTrainingActivity.class);
+                startActivity(intent);
                 break;
             case R.id.setDictionary:
                 Intent intent2 = new Intent(this, DictionarySetActivity.class);

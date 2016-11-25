@@ -2,4 +2,11 @@
     <string name="app_name">MysticalCards</string>
     <string name="title_activity_five_test">FiveActivityTest</string>
     <string name="title_activity_dictionary_set">DictionarySetActivity</string>
+    <string name="title_activity_train_box1">TrainBox1</string>
+    <string name="dnwordRU">Я не знаю это слово</string>
+    <string name="nwordRU">Я знаю это слово</string>
+    <string name="dnwordEU">I dont know this word</string>
+    <string name="nwordEU">I know this word</string>
+    <string name="dialog_message">Дратуте, хотите выбрать настройки?</string>
+    <string name="dialog_title">Окно выбора</string>
 </resources>

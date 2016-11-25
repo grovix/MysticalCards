@@ -19,6 +19,17 @@
         <activity android:name=".BoxActivity" />
         <activity android:name=".ArchiveActivity" />
         <activity android:name=".DictionarySetActivity" />
+        <activity android:name=".Training.ChooseTrainingActivity" />
+        <activity
+            android:name=".Training.TrainBox1"
+            android:label="@string/title_activity_train_box1"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Training.TrainBox1_rev_side"
+            android:label="TrainBox1_rev_side"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+
         <activity android:name=".StorageActivity"></activity>
     </application>
 
