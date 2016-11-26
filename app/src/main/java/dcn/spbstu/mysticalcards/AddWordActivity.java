@@ -1,6 +1,5 @@
 package dcn.spbstu.mysticalcards;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.Map;
 
 public class AddWordActivity extends AppCompatActivity implements View.OnClickListener {
@@ -52,7 +50,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.findWord:
                 EditText editText = (EditText) findViewById(R.id.editText);
-                final String str = editText.getText().toString();
+                final String str = editText.getText().toString().toLowerCase();
                 ListView lv = (ListView) findViewById(R.id.lv_3);
                 lv.setAdapter(null);
                 LinearLayout layout = (LinearLayout) findViewById(R.id.linl1);
@@ -116,7 +114,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                                     }
                                                     if (d != 1) {
                                                         Storage.cards_.add(card);
-                                                        if (str.equals(str1)) {
+                                                        if (str.equals(str1) && !(index == -2) ) {
                                                             Storage.archive_.remove(index);
                                                         }
                                                         Toast toast = Toast.makeText(getApplicationContext(),
@@ -144,7 +142,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                         } else {
                                             card = new Card(0, "", str);
                                         }
-                                        if (!str.equals(str1)) {
+                                        if (!str.equals(str1)&& !(index == -2)) {
                                             Storage.archive_.add(card);
                                         }
                                         Toast toast = Toast.makeText(getApplicationContext(),
@@ -201,7 +199,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                         }
                                         if (d != 1) {
                                             Storage.cards_.add(card);
-                                            if (str.equals(str1)) {
+                                            if (str.equals(str1)&& !(index == -2)) {
                                                 Storage.archive_.remove(index);
                                             }
                                             Toast toast = Toast.makeText(getApplicationContext(),
@@ -219,7 +217,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                     } else {
                                         card = new Card(0, "", str);
                                     }
-                                    if (!str.equals(str1)) {
+                                    if (!str.equals(str1)&& !(index == -2)) {
                                         Storage.archive_.add(card);
                                     }
                                     Toast toast = Toast.makeText(getApplicationContext(),
@@ -240,7 +238,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                 } else {
                                     card = new Card(0, "", str);
                                 }
-                                if (!str.equals(str1)) {
+                                if (!str.equals(str1)&& !(index == -2)) {
                                     Storage.archive_.add(card);
                                 }
                                 Toast toast = Toast.makeText(getApplicationContext(),

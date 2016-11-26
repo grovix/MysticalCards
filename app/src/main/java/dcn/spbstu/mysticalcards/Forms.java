@@ -122,6 +122,7 @@ public class Forms {
         // 's
         str_1.add(word + "'s");
         str_1.add(word + "'");
+        str_1.add(word + "n't");
         String[] strings = new String[str_1.size()];
         for(int i = 0; i < str_1.size(); i++){
             strings[i] = str_1.get(i);

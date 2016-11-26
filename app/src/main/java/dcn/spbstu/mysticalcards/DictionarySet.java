@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class DictionarySet implements iDictionaryDriving {
 
-    static volatile ArrayList<Dictionary> dictionaries = new ArrayList<Dictionary>();
+    public static volatile ArrayList<Dictionary> dictionaries = new ArrayList<Dictionary>();
 
     public DictionarySet(){
     }

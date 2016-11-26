@@ -77,8 +77,6 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.mainMenu:
                 finish();
-               // Intent intent7 = new Intent(this, MainActivity.class);
-               // startActivity(intent7);
             default:
                 break;
         }

@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.IOException;
-
 public class ArchiveActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button back3;

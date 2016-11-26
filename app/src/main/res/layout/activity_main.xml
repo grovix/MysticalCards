@@ -11,15 +11,6 @@
     tools:context="dcn.spbstu.mysticalcards.MainActivity">
 
     <Button
-        android:text="Добавить слово"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
-        android:id="@+id/addWord"
-        android:layout_below="@+id/setDictionary"
-        android:layout_centerHorizontal="true" />
-
-    <Button
         android:text="Список загруженных словарей"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,5 +48,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="39dp"
         android:id="@+id/end" />
+
+    <Button
+        android:text="Добавление новых слов"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:id="@+id/addWord"
+        android:layout_below="@+id/setDictionary"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

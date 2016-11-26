@@ -5,14 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import java.io.IOException;
 
 import dcn.spbstu.mysticalcards.Training.ChooseTrainingActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button training;
     Button setDictionary;
     Button addWord;
     Button storage;
@@ -43,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (Forms.forms_.isEmpty()) {
             try {
-                deleteFile("forms");
                 forms.readForms(this);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -106,9 +103,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent2);
                 break;
             case R.id.addWord:
-                Intent intent3 = new Intent(this, AddWordActivity.class);
+                /*Intent intent3 = new Intent(this, AddWordActivity.class);
                 intent3.putExtra("name", "");
                 intent3.putExtra("index", -1);
+                startActivity(intent3);*/
+                Intent intent3 = new Intent(this, AddWordVariants.class);
                 startActivity(intent3);
                 break;
             case R.id.storage:
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent4);
                 break;
             case R.id.end:
-                /*try {
+                try {
                     storage1.writeBox(this);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -130,8 +129,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     forms.writeForms(this);
                 } catch (IOException e) {
                     e.printStackTrace();
-                }*/
-                finish();
+                }
+                System.exit(0);
             default:
                 break;
         }

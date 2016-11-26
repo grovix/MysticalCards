@@ -27,10 +27,10 @@
         <activity
             android:name=".Training.TrainBox1_rev_side"
             android:label="TrainBox1_rev_side"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
-
-        <activity android:name=".StorageActivity"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".StorageActivity" />
+        <activity android:name=".AddWordVariants" />
+        <activity android:name=".AddFromTextActivity"></activity>
     </application>
 
 </manifest>
