@@ -3,19 +3,16 @@ package dcn.spbstu.mysticalcards.Training;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import dcn.spbstu.mysticalcards.R;
 
-public class TrainBox1_rev_side extends AppCompatActivity implements View.OnClickListener {
+public class TrainBox_rev_side extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_train_box1_rev_side);
+        setContentView(R.layout.activity_train_box_rev_side);
 
         final TextView myText = (TextView) findViewById(R.id.transl_word);
         String translation = getIntent().getExtras().getString("translation");
@@ -40,7 +37,7 @@ public class TrainBox1_rev_side extends AppCompatActivity implements View.OnClic
 //                //for (int i = 0; i < numberOfWords; ) {
 //                switch (v.getId()) {
 //                    case R.id.turn_card:
-//                        Intent intent = new Intent(TrainBox1_rev_side.this, TrainBox1.class);
+//                        Intent intent = new Intent(TrainBox_rev_side.this, TrainBox.class);
 //                        startActivity(intent);
 //                        break;
 //                    case R.id.guess_b_no:
@@ -49,7 +46,7 @@ public class TrainBox1_rev_side extends AppCompatActivity implements View.OnClic
 //                    case R.id.guess_b_yes:
 //                        //i++;
 //                        myText.setText("Word");
-//                        intent = new Intent(TrainBox1_rev_side.this, TrainBox1.class);
+//                        intent = new Intent(TrainBox_rev_side.this, TrainBox.class);
 //                        startActivity(intent);
 //                        //To be implemented
 //                        break;

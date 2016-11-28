@@ -10,14 +10,6 @@
     android:background="@android:color/background_light"
     tools:context="dcn.spbstu.mysticalcards.MainActivity">
 
-    <Button
-        android:text="Список загруженных словарей"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:id="@+id/setDictionary"
-        android:layout_below="@+id/trainingActivity"
-        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="Начать тренировку"
@@ -27,35 +19,58 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="48dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
+
+    <Button
+        android:text="Список загруженных словарей"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:id="@+id/setDictionary"
+        android:layout_below="@+id/trainingActivity"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
+
+    <Button
+        android:text="Добавление новых слов"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:id="@+id/addWord"
+        android:layout_below="@+id/setDictionary"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:background="@android:color/white"
         android:textColor="@color/colorPrimary"/>
 
     <Button
         android:text="Хранилище карточек"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/storage"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="40dp"
         android:layout_below="@+id/addWord"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
 
     <Button
         android:text="Выход"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/storage"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
-        android:id="@+id/end" />
+        android:layout_marginTop="40dp"
+        android:id="@+id/end"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
 
-    <Button
-        android:text="Добавление новых слов"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:id="@+id/addWord"
-        android:layout_below="@+id/setDictionary"
-        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

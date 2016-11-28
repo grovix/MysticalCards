@@ -1,7 +1,12 @@
 package dcn.spbstu.mysticalcards;
 
-public class Card implements iCard {
-    int box_;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Card implements iCard, Serializable {
+    private int box_;
     String en_;
     String ru_;
 
@@ -16,6 +21,38 @@ public class Card implements iCard {
         en_ = en;
         ru_ = ru;
     }
+
+//    private Card(Parcel in) {
+//        String[] data = new String[2];
+//        in.readStringArray(data);
+//        en_ = data[0];
+//        ru_ = data[1];
+//
+//    }
+
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeStringArray(new String[] {en_, ru_});
+//    }
+//
+//    public static final Parcelable.Creator<Card> CREATOR = new Parcelable.Creator<Card>() {
+//        @Override
+//        public Card createFromParcel(Parcel source) {
+//            return new Card(source);
+//        }
+//
+//        @Override
+//        public Card[] newArray(int size) {
+//            return new Card[size];
+//        }
+//    };
+
+
     @Override
     public int getBox(){return box_;}
 

@@ -1,6 +1,6 @@
 package dcn.spbstu.mysticalcards.Training;
 
-import android.app.Dialog;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -10,22 +10,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import dcn.spbstu.mysticalcards.Card;
 import dcn.spbstu.mysticalcards.R;
 
-public class ChooseTrainingActivity extends AppCompatActivity {
+public class ChooseTrainingActivity extends AppCompatActivity implements View.OnClickListener {
+
+    AlertDialog.Builder builder;
+    ArrayList<Card> box = new ArrayList<Card>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_training);
+    //    getIntent().removeExtra("info");
 
-
-
-
-
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(ChooseTrainingActivity.this);
+        builder = new AlertDialog.Builder(ChooseTrainingActivity.this);
         builder.setMessage(R.string.dialog_message)
                 .setTitle(R.string.dialog_title);
         builder.setPositiveButton("Ок", new DialogInterface.OnClickListener() {
@@ -54,11 +55,11 @@ public class ChooseTrainingActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
+        box.add(new Card(1, "work", "работа"));
+        box.add(new Card(1, "nose", "нос"));
+        box.add(new Card(1, "rage", "гнев"));
+        box.add(new Card(1, "head", "голова"));
+        box.add(new Card(1, "river", "река"));
 
 
         Button training1 = (Button) findViewById(R.id.training1);
@@ -66,45 +67,51 @@ public class ChooseTrainingActivity extends AppCompatActivity {
         Button training3 = (Button) findViewById(R.id.training3);
         Button training4 = (Button) findViewById(R.id.training4);
         Button training5 = (Button) findViewById(R.id.training5);
+        training1.setOnClickListener(this);
+        training2.setOnClickListener(this);
+        training3.setOnClickListener(this);
+        training4.setOnClickListener(this);
+        training5.setOnClickListener(this);
+    }
 
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch(v.getId()){
-                    case R.id.training1 :
-                        Intent intent = new Intent(ChooseTrainingActivity.this, TrainBox1.class);
-
-
-                        //intent.putExtra("card", card_t);
-                        //intent.putExtra("cardEN", card_t.getEn());
-                        startActivity(intent);
-                        break;
-                    case R.id.training2 :
-                        builder.show();
-                        //To be implemented
-                        break;
-                    case R.id.training3 :
-                        new CustomDialogFragment().show(getSupportFragmentManager(), "conf");
-                        //To be implemented
-                        break;
-                    case R.id.training4 :
-                        //To be implemented
-                        break;
-                    case R.id.training5 :
-                        //To be implemented
-                        break;
-                }
-            }
-        };
-
-        training1.setOnClickListener(onClickListener);
-        training2.setOnClickListener(onClickListener);
-        training3.setOnClickListener(onClickListener);
-        training4.setOnClickListener(onClickListener);
-        training5.setOnClickListener(onClickListener);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.training1:
+                startTraining(1);
+                break;
+            case R.id.training2:
+                startTraining(2);
+                break;
+            case R.id.training3:
+                startTraining(3);
+                //Передается номер коробки, чтобы после выбора параметров в диалоге создалось активити с нужным набором карточек
+                break;
+            case R.id.training4:
+                startTraining(4);
+                break;
+            case R.id.training5:
+                startTraining(5);
+                break;
+        }
 
     }
 
+    private void startTraining(int num_box) {
+        ArrayList<Card> training_box = new ArrayList<Card>();
+        for(int i = 0; i < box.size(); i++) {
+            if (box.get(i).getBox() == num_box)
+                training_box.add(box.get(i));
+        }
+
+
+//        getIntent().putExtra("numBox", num_box);
+        getIntent().putExtra("box", training_box);
+
+        new CustomDialogFragment().show(getSupportFragmentManager(), "conf");
+    }
 }
+
+
 
 
