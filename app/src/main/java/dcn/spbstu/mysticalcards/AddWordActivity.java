@@ -3,6 +3,7 @@ package dcn.spbstu.mysticalcards;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,66 +65,52 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                 txtV.setText("Количество переводов слова \"" + str + "\" в словаре " + DictionarySet.dictionaries.get(i).getName() + " - " + translations.length);
                                 String[] arr = new String[translations.length];
                                 for (int j = 0; j < translations.length; j++) {
-                                    arr[j] = (j + 1) + ") " + translations[j];
+                                    arr[j] = translations[j];
                                 }
                                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                                         android.R.layout.simple_list_item_1, arr);
                                 lv.setAdapter(adapter);
-                                TextView txt = new TextView(layout.getContext());
-                                txt.setText("Введите номер перевода");
-                                layout.addView(txt);
-                                final EditText editText2 = new EditText(layout.getContext());
-                                layout.addView(editText2);
-                                Button btn = new Button(layout.getContext());
-                                btn.setText("Добавить перевод");
-                                layout.addView(btn);
-                                btn.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-                                        String word = editText2.getText().toString();
-                                        for (int k = 1; k <= translations.length; k++) {
-                                            if (word.equals(String.valueOf(k))) {
-                                                Card card;
-                                                if (direction.getText().equals("EN|RU")) {
-                                                    card = new Card(1, str, translations[k - 1]);
-                                                } else {
-                                                    card = new Card(1, translations[k - 1], str);
-                                                }
-                                                int r = 0;
-                                                for (int i = 0; i < Storage.cards_.size(); i++) {
-                                                    if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(translations[k - 1])) {
-                                                        r = 1;
-                                                    }
-                                                }
-                                                if (r == 1) {
-                                                    Toast toast = Toast.makeText(getApplicationContext(),
-                                                            "Такое слово уже есть среди карточек", Toast.LENGTH_SHORT);
-                                                    toast.show();
-                                                } else {
-                                                    int d = 0;
-                                                    for (Map.Entry<String, String[]> entry : forms.getMap().entrySet()) {
-                                                        for (int j = 0; j < entry.getValue().length - 1; j++) {
-                                                            if (entry.getValue()[j].equals(str)) {
-                                                                Toast toast = Toast.makeText(getApplicationContext(),
-                                                                        "Такое слово уже есть среди карточек", Toast.LENGTH_SHORT);
-                                                                toast.show();
-                                                                d = 1;
-                                                            }
-                                                        }
-                                                    }
-                                                    if (d != 1) {
-                                                        Storage.cards_.add(card);
-                                                        if (str.equals(str1) && !(index == -2) ) {
-                                                            Storage.archive_.remove(index);
-                                                        }
+                                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Card card;
+                                        String tr = translations[position];
+                                        if (direction.getText().equals("EN|RU")) {
+                                            card = new Card(1, str, tr);
+                                        } else {
+                                            card = new Card(1, tr, str);
+                                        }
+                                        int r = 0;
+                                        for (int i = 0; i < Storage.cards_.size(); i++) {
+                                            if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(tr)) {
+                                                r = 1;
+                                            }
+                                        }
+                                        if (r == 1) {
+                                            Toast toast = Toast.makeText(getApplicationContext(),
+                                                    "Такое слово уже есть среди карточек", Toast.LENGTH_SHORT);
+                                            toast.show();
+                                        } else {
+                                            int d = 0;
+                                            for (Map.Entry<String, String[]> entry : forms.getMap().entrySet()) {
+                                                for (int j = 0; j < entry.getValue().length - 1; j++) {
+                                                    if (entry.getValue()[j].equals(str)) {
                                                         Toast toast = Toast.makeText(getApplicationContext(),
-                                                                "Создана новая карточка", Toast.LENGTH_SHORT);
+                                                                "Такое слово уже есть среди карточек", Toast.LENGTH_SHORT);
                                                         toast.show();
-                                                        if (direction.getText().equals("EN|RU")) {
-                                                            forms.setForms_(str);
-                                                        }
+                                                        d = 1;
                                                     }
+                                                }
+                                            }
+                                            if (d != 1) {
+                                                Storage.cards_.add(card);
+                                                if (str.equals(str1) && !(index == -2)) {
+                                                    Storage.archive_.remove(index);
+                                                }
+                                                Toast toast = Toast.makeText(getApplicationContext(),
+                                                        "Создана новая карточка", Toast.LENGTH_SHORT);
+                                                toast.show();
+                                                if (direction.getText().equals("EN|RU")) {
+                                                    forms.setForms_(str);
                                                 }
                                             }
                                         }
