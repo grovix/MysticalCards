@@ -5,7 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import dcn.spbstu.mysticalcards.Training.ChooseTrainingActivity;
 
@@ -38,6 +46,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     e.printStackTrace();
                 }
             }
+        }
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(openFileInput("Names_of_loaded_dictionaries")));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                Dictionary dictionary = new Dictionary();
+                dictionary.setName(line);
+                BufferedReader br;
+                br = new BufferedReader(new InputStreamReader(openFileInput(line)));
+                String line1;
+                List<String> list1 = new ArrayList<String>();
+                try {
+                    while ((line = br.readLine()) != null) {
+                        list1.add(line);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Map<String, String> map = new TreeMap<>();
+                for (int j = 0; j < list1.size(); j++) {
+                    String[] arrayMessage = list1.get(j).split(" - ");
+                    map.put(arrayMessage[0], arrayMessage[1]);
+                }
+                for (Map.Entry<String, String> entry : map.entrySet()) {
+                    String[] translations = entry.getValue().split("; ");
+                    dictionary.map_.put(entry.getKey(), translations);
+                }
+                DictionarySet.dictionaries.add(dictionary);;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         if (Forms.forms_.isEmpty()) {
             try {

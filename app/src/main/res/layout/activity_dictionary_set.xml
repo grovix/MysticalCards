@@ -9,25 +9,49 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dcn.spbstu.mysticalcards.DictionarySetActivity">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/linlay"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/back4">
+        android:layout_alignParentStart="true">
 
         <Button
             android:text="Назад"
-            android:layout_width="167dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/backToMenu" />
+            android:layout_width="118dp"
+            android:layout_height="62dp"
+            android:id="@+id/backToMenu"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-        <ListView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/set" />
+            android:layout_height="188dp"
+            android:layout_weight="0.57"
+            android:weightSum="1"
+            android:id="@+id/ll">
+
+            <Button
+                android:text="Загрузить новый словарь"
+                android:layout_width="168dp"
+                android:layout_height="52dp"
+                android:id="@+id/load"
+                android:layout_weight="0.04" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="118dp"
+                android:id="@+id/set"
+                android:scrollbars="horizontal" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
 </RelativeLayout>
