@@ -9,4 +9,5 @@
     <string name="nwordEU">I know this word</string>
     <string name="dialog_message">Дратуте, хотите выбрать настройки?</string>
     <string name="dialog_title">Окно выбора</string>
+    <string name="title_activity_add_from_loaded_text">AddFromLoadedTextActivity</string>
 </resources>

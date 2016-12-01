@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dcn.spbstu.mysticalcards">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,7 +32,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".StorageActivity" />
         <activity android:name=".AddWordVariants" />
-        <activity android:name=".AddFromTextActivity"></activity>
+        <activity android:name=".AddFromTextActivity" />
+        <activity android:name=".DownloadCardsActivity"></activity>
     </application>
 
 </manifest>

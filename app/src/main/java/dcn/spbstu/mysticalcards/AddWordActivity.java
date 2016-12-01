@@ -61,7 +61,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                         for (Map.Entry<String, String[]> entry : DictionarySet.dictionaries.get(i).getMap().entrySet()) {
                             if (entry.getKey().equals(str)) {
                                 final String[] translations = entry.getValue();
-                                TextView txtV = (TextView) findViewById(R.id.search);
+                                TextView txtV = (TextView) findViewById(R.id.download);
                                 txtV.setText("Количество переводов слова \"" + str + "\" в словаре " + DictionarySet.dictionaries.get(i).getName() + " - " + translations.length);
                                 String[] arr = new String[translations.length];
                                 for (int j = 0; j < translations.length; j++) {
@@ -141,7 +141,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                         }
                         i = DictionarySet.dictionaries.size();
                     } else if (i == DictionarySet.dictionaries.size() - 1) {
-                        TextView txtV = (TextView) findViewById(R.id.search);
+                        TextView txtV = (TextView) findViewById(R.id.download);
                         txtV.setText("Слова \"" + str + "\" нет в словарях");
                         TextView txt = new TextView(layout.getContext());
                         txt.setText("Введите перевод вручную:");
