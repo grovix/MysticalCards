@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Добавить слова из текста"
+        android:text="Добавить слова из введенного текста"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/addOneWord"

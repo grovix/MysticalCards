@@ -33,10 +33,12 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
         }
 
         String[] arr = new String[count];
+        int j = 0;
         for (int i = 0; i < Storage.cards_.size(); i++) {
             if (Storage.cards_.get(i).getBox() == box) {
-                arr[i] = Storage.cards_.get(i).getEn() + " - " + Storage.cards_.get(i).getRu();
-                cards[i] = Storage.cards_.get(i);
+                arr[j] = Storage.cards_.get(i).getEn() + " - " + Storage.cards_.get(i).getRu();
+                cards[j] = Storage.cards_.get(i);
+                j++;
             }
         }
         ListView lv = (ListView) findViewById(R.id.lv_2);
