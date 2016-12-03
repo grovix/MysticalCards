@@ -14,6 +14,9 @@ import java.util.ArrayList;
 
 import dcn.spbstu.mysticalcards.Card;
 import dcn.spbstu.mysticalcards.R;
+import dcn.spbstu.mysticalcards.Storage;
+
+import static dcn.spbstu.mysticalcards.R.id.storage;
 
 public class ChooseTrainingActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,7 +27,7 @@ public class ChooseTrainingActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_training);
-    //    getIntent().removeExtra("info");
+        //    getIntent().removeExtra("info");
 
         builder = new AlertDialog.Builder(ChooseTrainingActivity.this);
         builder.setMessage(R.string.dialog_message)
@@ -97,18 +100,22 @@ public class ChooseTrainingActivity extends AppCompatActivity implements View.On
 
     }
 
-    private void startTraining(int num_box) {
-        ArrayList<Card> training_box = new ArrayList<Card>();
-        for(int i = 0; i < box.size(); i++) {
-            if (box.get(i).getBox() == num_box)
-                training_box.add(box.get(i));
-        }
-
-
-//        getIntent().putExtra("numBox", num_box);
-        getIntent().putExtra("box", training_box);
-
+    private void startTraining(int boxNumber) {
+        getIntent().putExtra("boxNumber", boxNumber);
         new CustomDialogFragment().show(getSupportFragmentManager(), "conf");
+//        int know = getIntent().getExtras().getInt("know");
+//        int dont_know = getIntent().getExtras().getInt("dont_know");
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage("Результат тренировки:\nЗнаете слов: " + know + "\nНе знаете слов: " + dont_know).setTitle("Привет").setPositiveButton("Я молодец!", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//                finish();
+//            }
+//        });
+//        AlertDialog alert = builder.create();
+//        alert.show();
+
     }
 }
 

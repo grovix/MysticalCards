@@ -21,23 +21,24 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/myRadioGroup">
 
             <RadioButton
                 android:text="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:id="@+id/radioButton4"
+                android:id="@+id/iteration_1"
                 android:allowUndo="true"
                 android:elevation="0dp"
                 android:layout_marginLeft="20dp" />
 
             <RadioButton
-                android:text="2"
+                android:text="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioButton3"
+                android:id="@+id/iteration_3"
                 android:layout_weight="1"
                 android:allowUndo="true"
                 android:checked="true"
@@ -45,14 +46,21 @@
                 android:layout_marginLeft="20dp" />
 
             <RadioButton
-                android:text="3"
+                android:text="5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioButton"
+                android:id="@+id/iteration_5"
                 android:layout_weight="1"
                 android:allowUndo="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp" />
+
+            <RadioButton
+                android:text="10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/iteration_10"
+                android:layout_weight="1" />
 
         </RadioGroup>
 
@@ -70,7 +78,7 @@
 
             <TextView
                 android:layout_height="wrap_content"
-                android:text="Количество слов"
+                android:text="Количество слов:"
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:textSize="21sp"
@@ -98,7 +106,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:text="Направление перевода"
+                android:text="Направление перевода:"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/trans_direction"

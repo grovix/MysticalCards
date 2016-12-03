@@ -9,6 +9,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ public class CustomDialogFragment extends DialogFragment implements DialogInterf
     private Spinner spinner_w;
     private String tr_dir;
     private String nmbWords;
+    private RadioButton checkedRadioButton;
     int q_Words;
     int posOfspin_w;
 
@@ -75,6 +78,19 @@ public class CustomDialogFragment extends DialogFragment implements DialogInterf
             }
         });
 
+
+
+//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                RadioButton radioButton = (RadioButton)group.findViewById(checkedId);
+//                boolean isChecked = radioButton.isChecked();
+//
+//                if(isChecked)
+//                    Toast.makeText(getContext(), "Checked " + radioButton.getText() + " button", Toast.LENGTH_LONG).show();
+//            }
+//        });
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("Конфигурация тренировки").setView(form)
                 .setPositiveButton("Ок",this)
@@ -86,18 +102,23 @@ public class CustomDialogFragment extends DialogFragment implements DialogInterf
                 });
 
         return builder.create();
+
     }
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
 
+        RadioGroup radioGroup = (RadioGroup) form.findViewById(R.id.myRadioGroup);
+        checkedRadioButton = (RadioButton) radioGroup.findViewById(radioGroup.getCheckedRadioButtonId());
+
         String inf = getActivity().getIntent().getExtras().getString("info");
         Intent intent = new Intent(getContext(), TrainBox.class);
-        intent.putExtra("box", getActivity().getIntent().getSerializableExtra("box"));
+        intent.putExtra("boxNumber", getActivity().getIntent().getExtras().getInt("boxNumber"));
         intent.putExtra("numOfWords", word_num[q_Words]);
         intent.putExtra("tr_dir", posOfspin_w);
-
+        intent.putExtra("iteration", Integer.parseInt(checkedRadioButton.getText().toString()));
         startActivity(intent);
+
 
     }
 

@@ -25,6 +25,14 @@ public class Storage implements iAdditionOfCard, iArchive {
         return cards_.get(i);
     }
 
+    public int getSize() {
+        return cards_.size();
+    }
+
+    public boolean isEmpty() {
+        return getSize()==0;
+    }
+
     public void readBox(int box, Context context) throws IOException {
         BufferedReader reader;
         switch (box) {
