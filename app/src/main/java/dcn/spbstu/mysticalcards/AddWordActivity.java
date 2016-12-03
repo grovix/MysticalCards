@@ -54,12 +54,15 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                 final String str = editText.getText().toString().toLowerCase();
                 ListView lv = (ListView) findViewById(R.id.lv_3);
                 lv.setAdapter(null);
+                LinearLayout.LayoutParams lParams1;
                 LinearLayout layout = (LinearLayout) findViewById(R.id.linl1);
                 layout.removeAllViews();
                 for (int i = 0; i < DictionarySet.dictionaries.size(); i++) {
                     if (DictionarySet.dictionaries.get(i).getMap().containsKey(str)) {
                         for (Map.Entry<String, String[]> entry : DictionarySet.dictionaries.get(i).getMap().entrySet()) {
                             if (entry.getKey().equals(str)) {
+                                lParams1 = (LinearLayout.LayoutParams) lv.getLayoutParams();
+                                lParams1.height = 200;
                                 final String[] translations = entry.getValue();
                                 TextView txtV = (TextView) findViewById(R.id.download);
                                 txtV.setText("Количество переводов слова \"" + str + "\" в словаре " + DictionarySet.dictionaries.get(i).getName() + " - " + translations.length);
@@ -129,7 +132,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                         } else {
                                             card = new Card(0, "", str);
                                         }
-                                        if (!str.equals(str1)&& !(index == -2)) {
+                                        if (!str.equals(str1) && !(index == -2)) {
                                             Storage.archive_.add(card);
                                         }
                                         Toast toast = Toast.makeText(getApplicationContext(),
@@ -137,10 +140,41 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                         toast.show();
                                     }
                                 });
+                                if (direction.getText().equals("EN|RU")) {
+                                    Button addForm = new Button(layout.getContext());
+                                    addForm.setText("Добавить в формы");
+                                    layout.addView(addForm);
+                                    addForm.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            int d = 0;
+                                            for (Map.Entry<String, String[]> entry : Forms.forms_.entrySet()) {
+                                                if (entry.getKey().equals(str)) {
+                                                    d = 1;
+                                                }
+                                                if (d != 1) {
+                                                    for (int j = 0; j < entry.getValue().length - 1; j++) {
+                                                        if (entry.getValue()[j].equals(str)) {
+                                                            d = 1;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            if (d != 1) {
+                                                forms.setForms_(str);
+                                            }
+                                            Toast toast = Toast.makeText(getApplicationContext(),
+                                                    "Cозданы формы слова", Toast.LENGTH_SHORT);
+                                            toast.show();
+                                        }
+                                    });
+                                }
                             }
                         }
                         i = DictionarySet.dictionaries.size();
                     } else if (i == DictionarySet.dictionaries.size() - 1) {
+                        lParams1 = (LinearLayout.LayoutParams) lv.getLayoutParams();
+                        lParams1.height = 50;
                         TextView txtV = (TextView) findViewById(R.id.download);
                         txtV.setText("Слова \"" + str + "\" нет в словарях");
                         TextView txt = new TextView(layout.getContext());
@@ -186,7 +220,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                         }
                                         if (d != 1) {
                                             Storage.cards_.add(card);
-                                            if (str.equals(str1)&& !(index == -2)) {
+                                            if (str.equals(str1) && !(index == -2)) {
                                                 Storage.archive_.remove(index);
                                             }
                                             Toast toast = Toast.makeText(getApplicationContext(),
@@ -204,7 +238,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                     } else {
                                         card = new Card(0, "", str);
                                     }
-                                    if (!str.equals(str1)&& !(index == -2)) {
+                                    if (!str.equals(str1) && !(index == -2)) {
                                         Storage.archive_.add(card);
                                     }
                                     Toast toast = Toast.makeText(getApplicationContext(),
@@ -225,7 +259,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                 } else {
                                     card = new Card(0, "", str);
                                 }
-                                if (!str.equals(str1)&& !(index == -2)) {
+                                if (!str.equals(str1) && !(index == -2)) {
                                     Storage.archive_.add(card);
                                 }
                                 Toast toast = Toast.makeText(getApplicationContext(),
@@ -233,6 +267,35 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                 toast.show();
                             }
                         });
+                        if (direction.getText().equals("EN|RU")) {
+                            Button addForm = new Button(layout.getContext());
+                            addForm.setText("Добавить в формы");
+                            layout.addView(addForm);
+                            addForm.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    int d = 0;
+                                    for (Map.Entry<String, String[]> entry : Forms.forms_.entrySet()) {
+                                        if (entry.getKey().equals(str)) {
+                                            d = 1;
+                                        }
+                                        if (d != 1) {
+                                            for (int j = 0; j < entry.getValue().length - 1; j++) {
+                                                if (entry.getValue()[j].equals(str)) {
+                                                    d = 1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (d != 1) {
+                                        forms.setForms_(str);
+                                    }
+                                    Toast toast = Toast.makeText(getApplicationContext(),
+                                            "Cозданы формы слова", Toast.LENGTH_SHORT);
+                                    toast.show();
+                                }
+                            });
+                        }
                     }
                 }
                 break;

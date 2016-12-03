@@ -57,7 +57,7 @@ public class AddFromTextActivity extends AppCompatActivity implements View.OnCli
                 final ArrayList<String> list = new ArrayList<String>();
                 EditText editText = (EditText) findViewById(R.id.input_text);
                 String str = editText.getText().toString();
-                String[] arrayWord = str.split("[\"\',-;:.!?&$() {1-9}{а-я}]+");
+                String[] arrayWord = str.split("[\",-;:.!?&$() {1-9}{а-я}]+");
                 for (int i = 0; i < arrayWord.length; i++) {
                     int d = 0;
                     for (int k = 0; k < articles_prepositions.size(); k++) {

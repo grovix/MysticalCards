@@ -14,7 +14,7 @@ public class AddWordVariants extends AppCompatActivity implements View.OnClickLi
 
     Button addOneWord;
     Button addFromText;
-    Button addFromLoadedText;
+    Button addFromDownloadedText;
     Button download;
     Button backToMenu;
 
@@ -29,8 +29,8 @@ public class AddWordVariants extends AppCompatActivity implements View.OnClickLi
         addFromText = (Button) findViewById(R.id.AddFromText);
         addFromText.setOnClickListener(this);
 
-        addFromLoadedText = (Button) findViewById(R.id.AddFromLoadedText);
-        addFromLoadedText.setOnClickListener(this);
+        addFromDownloadedText = (Button) findViewById(R.id.AddFromDownloadedText);
+        addFromDownloadedText.setOnClickListener(this);
 
         backToMenu = (Button) findViewById(R.id.backToMenu1);
         backToMenu.setOnClickListener(this);
@@ -51,6 +51,10 @@ public class AddWordVariants extends AppCompatActivity implements View.OnClickLi
             case R.id.AddFromText:
                 Intent intent2 = new Intent(this, AddFromTextActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.AddFromDownloadedText:
+                Intent intent3 = new Intent(this, AddFromDownloadedTextActivity.class);
+                startActivity(intent3);
                 break;
             case R.id.DownloadCards:
                 Intent intent4 = new Intent(this, DownloadCardsActivity.class);

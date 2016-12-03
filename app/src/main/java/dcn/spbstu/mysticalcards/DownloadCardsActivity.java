@@ -19,9 +19,11 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class DownloadCardsActivity extends AppCompatActivity implements View.OnClickListener {
 
+    Forms forms = new Forms();
     Button backToMenu;
     Button download;
 
@@ -78,14 +80,28 @@ public class DownloadCardsActivity extends AppCompatActivity implements View.OnC
                             String[] box = arrayMessage[2].split(";");
                             for (int i = 0; i < translations.length; i++) {
                                 int r = 0;
+                                int d = 0;
                                 for (int j = 0; j < Storage.cards_.size(); j++) {
                                     if (Storage.cards_.get(j).getEn().equals(arrayMessage[0]) && Storage.cards_.get(j).getRu().equals(translations[i])) {
                                         r = 1;
                                     }
                                 }
+                                for (Map.Entry<String, String[]> entry : forms.getMap().entrySet()) {
+                                    if (entry.getKey().equals(arrayMessage[0])){
+                                        d = 1;
+                                    }
+                                    for (int j = 0; j < entry.getValue().length - 1; j++) {
+                                        if (entry.getValue()[j].equals(arrayMessage[0])) {
+                                            r = 1;
+                                        }
+                                    }
+                                }
                                 if (r != 1) {
                                     Card card = new Card(Integer.valueOf(box[0]), arrayMessage[0], translations[i]);
                                     Storage.cards_.add(card);
+                                    if (d != 1) {
+                                        forms.setForms_(arrayMessage[0]);
+                                    }
                                 }
                             }
                         }

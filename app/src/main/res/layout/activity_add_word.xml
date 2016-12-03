@@ -57,18 +57,19 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="278dp"
-            android:id="@+id/linl2">
+            android:layout_height="286dp"
+            android:id="@+id/linl2"
+            android:weightSum="1">
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="117dp"
+                android:layout_height="63dp"
                 android:id="@+id/lv_3" />
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="153dp"
+                android:layout_height="match_parent"
                 android:id="@+id/linl1">
 
             </LinearLayout>

@@ -33,7 +33,8 @@
         <activity android:name=".StorageActivity" />
         <activity android:name=".AddWordVariants" />
         <activity android:name=".AddFromTextActivity" />
-        <activity android:name=".DownloadCardsActivity"></activity>
+        <activity android:name=".DownloadCardsActivity" />
+        <activity android:name=".AddFromDownloadedTextActivity"></activity>
     </application>
 
 </manifest>

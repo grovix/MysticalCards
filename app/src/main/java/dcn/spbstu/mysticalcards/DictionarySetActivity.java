@@ -74,41 +74,6 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
                         String name = DictionarySet.dictionaries.get(position + 1).getName();
                         deleteFile(name);
                         DictionarySet.dictionaries.remove(position + 1);
-                        BufferedReader reader = null;
-                        try {
-                            reader = new BufferedReader(new InputStreamReader(openFileInput("Names_of_loaded_dictionaries")));
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        String line;
-                        List<String> list = new ArrayList<String>();
-                        try {
-                            while ((line = reader.readLine()) != null) {
-                                list.add(line);
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        list.remove(name);
-                        BufferedWriter pw;
-                        String str = "Names_of_loaded_dictionaries";
-                        try {
-                            pw = new BufferedWriter(new OutputStreamWriter(openFileOutput(str, MODE_PRIVATE)));
-                            for (int j =0;j<list.size(); j++){
-                            try {
-                                pw.write(list.get(j));
-                                pw.write('\n');
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }}
-                            try {
-                                pw.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
                         Toast.makeText(getApplicationContext(),
                                 "Словарь удален",
                                 Toast.LENGTH_SHORT).show();
@@ -180,28 +145,10 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
                                 dictionary.map_.put(entry.getKey(), translations);
                             }
                         }
-                        BufferedWriter pw;
-                        String str = "Names_of_loaded_dictionaries";
-                        try {
-                            pw = new BufferedWriter(new OutputStreamWriter(openFileOutput(str, MODE_PRIVATE)));
-                            try {
-                                pw.write(fileName);
-                                pw.write('\n');
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            try {
-                                pw.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
                         BufferedWriter pw1;
-                        String str1 = fileName;
+                        String str = fileName;
                         try {
-                            pw1 = new BufferedWriter(new OutputStreamWriter(openFileOutput(str1, MODE_PRIVATE)));
+                            pw1 = new BufferedWriter(new OutputStreamWriter(openFileOutput(str, MODE_PRIVATE)));
                             for (Map.Entry<String, String[]> entry : dictionary.map_.entrySet()) {
                                 try {
                                     pw1.write(entry.getKey() + " - ");
