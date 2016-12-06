@@ -186,4 +186,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+
+    @Override
+    public void onBackPressed() {
+        try {
+            storage1.writeBox(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            storage1.writeArchive(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            forms.writeForms(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BufferedWriter pw;
+        try {
+            pw = new BufferedWriter(new OutputStreamWriter(openFileOutput("Names_of_loaded_dictionaries", MODE_PRIVATE)));
+            for (int i = 1; i < DictionarySet.dictionaries.size(); i++) {
+                try {
+                    pw.write(DictionarySet.dictionaries.get(i).getName());
+                    pw.write('\n');
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.exit(0);
+    }
 }

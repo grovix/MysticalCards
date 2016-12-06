@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import dcn.spbstu.mysticalcards.Card;
 import dcn.spbstu.mysticalcards.R;
@@ -33,6 +34,7 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
     int numberOfWords, iterations;
     int counterYes, counterNo = 0;
     int know, dont_know;
+    ArrayList<Card> shuffledArray = new ArrayList<>();
     ArrayList<Card> box = new ArrayList<Card>();
 
     private static type TYPE_OF_TRAINING;
@@ -50,7 +52,8 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
 
         //Quantity of words is actual amount of words stored in the box %boxNumber%
         //Number of words is quantity of words that we want to be in our training box
-        int quantityOfWords = createBox(box, boxNumber);
+        createBox(shuffledArray, boxNumber);
+        int quantityOfWords = createTrainingBox(box);
         if (quantityOfWords == 0) {
             Toast.makeText(this, "Box №" + boxNumber + " is empty", Toast.LENGTH_LONG).show();
             finish();
@@ -60,7 +63,6 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
         }
 
         iterations = getIntent().getExtras().getInt("iteration");
-//        Toast.makeText(this, "U've chose : " + iterations + " iterations", Toast.LENGTH_LONG).show();
 
         switch (getIntent().getExtras().getInt("tr_dir")) {
             case 0:
@@ -93,6 +95,7 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                             startActivity(intent);
                             break;
                         case R.id.guess_b_yes:
+                            shuffledArray.remove(iTraining - 1);
                             box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
                             counterYes++;
                             finishActivity();
@@ -107,10 +110,13 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                             startActivity(intent);
                             break;
                         case R.id.guess_b_yes:
+
                             box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
                             counterYes++;
                             if (iTraining >= numberOfWords)
                                 finishActivity();
+                            else
+                                shuffledArray.remove(iTraining - 1);
                             myText.setText(box.get(iTraining).getEn());
                             break;
                     }
@@ -126,6 +132,7 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                             startActivity(intent);
                             break;
                         case R.id.guess_b_yes:
+                            shuffledArray.remove(iTraining - 1);
                             box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
                             counterYes++;
                             finishActivity();
@@ -140,10 +147,13 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                             startActivity(intent);
                             break;
                         case R.id.guess_b_yes:
+
                             box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
                             counterYes++;
                             if (iTraining >= numberOfWords)
                                 finishActivity();
+                            else
+                                shuffledArray.remove(iTraining - 1);
                             myText.setText(box.get(iTraining).getRu());
                             break;
                     }
@@ -162,7 +172,7 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                 box.clear();
                 numberOfWords = counterNo;
                 counterNo = 0;
-                if ((createBox(box, getIntent().getExtras().getInt("boxNumber"))) == 0) {
+                if ((createTrainingBox(box)) == 0) {
                     finishActivity();
                 }
 
@@ -196,6 +206,10 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
         if (iterations > 1 & dont_know != 0) {
             this.onResume();
             return;
+        }
+
+        for(int i = 0; i < dont_know; i++) {
+            box.get(i).setBox(1);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -236,18 +250,33 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    //Add cards from storage which are in the %boxNumber% box. Returns quantity of cards
-    private int createBox(ArrayList<Card> box, int boxNumber) {
+    //Add cards from storage which are in the %boxNumber% box then shuffle them in random order.
+    private void createBox(ArrayList<Card> shuffledArray, int boxNumber) {
         Storage storage = new Storage();
-        int j = 0;
 
-
-        for (int i = 0; (j < numberOfWords) && (i < storage.getSize()); i++) {
+        for (int i = 0; i < storage.getSize(); i++) {
             if (storage.getCard(i).getBox() == boxNumber) {
-                box.add(storage.getCard(i));
-                j++;
+                shuffledArray.add(storage.getCard(i));
             }
         }
+
+        Random random = new Random();
+        for(int i = 0; i < shuffledArray.size(); i++) {
+            int index = random.nextInt(i + 1);
+            Card temp = shuffledArray.get(index);
+            shuffledArray.set(index, shuffledArray.get(i));
+            shuffledArray.set(i, temp);
+        }
+
+    }
+
+    //Creat box with the exact number of words needed for training
+    private int createTrainingBox(ArrayList<Card> box) {
+        int j;
+        for (j = 0 ; (j < shuffledArray.size()) & (j < numberOfWords); j++) {
+            box.add(shuffledArray.get(j));
+        }
+
         return j;
     }
 
