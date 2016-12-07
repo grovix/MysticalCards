@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/background_light"
     tools:context="dcn.spbstu.mysticalcards.StorageActivity">
 
     <Button
@@ -18,7 +19,11 @@
         android:id="@+id/box_3"
         android:layout_below="@+id/box_2"
         android:layout_alignRight="@+id/box_2"
-        android:layout_alignEnd="@+id/box_2" />
+        android:layout_alignEnd="@+id/box_2"
+        android:layout_alignLeft="@+id/box_2"
+        android:layout_alignStart="@+id/box_2"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
 
     <Button
         android:text="Вторая коробка"
@@ -28,7 +33,11 @@
         android:id="@+id/box_2"
         android:layout_below="@+id/box_1"
         android:layout_alignLeft="@+id/box_1"
-        android:layout_alignStart="@+id/box_1" />
+        android:layout_alignStart="@+id/box_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
 
     <Button
         android:text="Пятая коробка"
@@ -38,18 +47,24 @@
         android:id="@+id/box_5"
         android:layout_below="@+id/box_4"
         android:layout_alignRight="@+id/box_3"
-        android:layout_alignEnd="@+id/box_3" />
+        android:layout_alignEnd="@+id/box_3"
+        android:layout_alignLeft="@+id/box_4"
+        android:layout_alignStart="@+id/box_4"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
 
     <Button
         android:text="Первая коробка"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="85dp"
-        android:layout_marginStart="85dp"
         android:id="@+id/box_1"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/mainMenu"
+        android:layout_alignStart="@+id/mainMenu"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
 
     <Button
         android:text="Четвертая коробка"
@@ -59,19 +74,11 @@
         android:layout_marginTop="28dp"
         android:layout_below="@+id/box_3"
         android:layout_alignLeft="@+id/box_2"
-        android:layout_alignStart="@+id/box_2" />
-
-    <Button
-        android:text="Архив"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/box_5"
-        android:layout_alignRight="@+id/box_5"
-        android:layout_alignEnd="@+id/box_5"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="26dp"
-        android:id="@+id/archive" />
+        android:layout_alignStart="@+id/box_2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
 
     <Button
         android:text="Главное меню"
@@ -83,5 +90,34 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp" />
+        android:layout_marginStart="14dp"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
+
+    <Button
+        android:text="Архив"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:id="@+id/archive"
+        android:layout_below="@+id/box_5"
+        android:layout_alignLeft="@+id/box_5"
+        android:layout_alignStart="@+id/box_5"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
+
+    <Button
+        android:text="Удалить все карточки"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/delete"
+        android:layout_alignBaseline="@+id/mainMenu"
+        android:layout_alignBottom="@+id/mainMenu"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"/>
+
 </RelativeLayout>

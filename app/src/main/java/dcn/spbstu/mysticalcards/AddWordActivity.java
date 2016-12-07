@@ -1,6 +1,4 @@
 package dcn.spbstu.mysticalcards;
-
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
@@ -15,7 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 public class AddWordActivity extends AppCompatActivity implements View.OnClickListener {
@@ -260,54 +257,55 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                         } else {
                             card = new Card(1, tr, str);
                         }
-                        int p = 0;
-                        for (int i = 0; i < Storage.cards_.size(); i++) {
+                        // int p = 0;
+                       /* for (int i = 0; i < Storage.cards_.size(); i++) {
                             if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getBox() == 5) {
                                 p = 1;
                             }
+                        }*/
+                        int r = 0;
+                       /* if (p != 1) {*/
+
+                        for (int i = 0; i < Storage.cards_.size(); i++) {
+                            if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(tr)) {
+                                r = 1;
+                            }
                         }
-                        if (p != 1) {
-                            int r = 0;
-                            for (int i = 0; i < Storage.cards_.size(); i++) {
-                                if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(tr)) {
-                                    r = 1;
+                        if (r == 1) {
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    "Такое слово уже есть среди карточек", Toast.LENGTH_SHORT);
+                            toast.show();
+                        } else {
+                            int d = 0;
+                            for (Map.Entry<String, String[]> entry : forms.getMap().entrySet()) {
+                                for (int j = 0; j < entry.getValue().length - 1; j++) {
+                                    if (entry.getValue()[j].equals(str)) {
+                                        Toast toast = Toast.makeText(getApplicationContext(),
+                                                "Такое слово уже есть среди карточек", Toast.LENGTH_SHORT);
+                                        toast.show();
+                                        d = 1;
+                                    }
                                 }
                             }
-                            if (r == 1) {
+                            if (d != 1) {
+                                Storage.cards_.add(card);
+                                if (str.equals(str1) && !(index == -2)) {
+                                    Storage.archive_.remove(index);
+                                }
                                 Toast toast = Toast.makeText(getApplicationContext(),
-                                        "Такое слово уже есть среди карточек", Toast.LENGTH_SHORT);
+                                        "Создана новая карточка", Toast.LENGTH_SHORT);
                                 toast.show();
-                            } else {
-                                int d = 0;
-                                for (Map.Entry<String, String[]> entry : forms.getMap().entrySet()) {
-                                    for (int j = 0; j < entry.getValue().length - 1; j++) {
-                                        if (entry.getValue()[j].equals(str)) {
-                                            Toast toast = Toast.makeText(getApplicationContext(),
-                                                    "Такое слово уже есть среди карточек", Toast.LENGTH_SHORT);
-                                            toast.show();
-                                            d = 1;
-                                        }
-                                    }
-                                }
-                                if (d != 1) {
-                                    Storage.cards_.add(card);
-                                    if (str.equals(str1) && !(index == -2)) {
-                                        Storage.archive_.remove(index);
-                                    }
-                                    Toast toast = Toast.makeText(getApplicationContext(),
-                                            "Создана новая карточка", Toast.LENGTH_SHORT);
-                                    toast.show();
-                                    if (direction.getText().equals("EN|RU")) {
-                                        forms.setForms_(str);
-                                    }
+                                if (direction.getText().equals("EN|RU")) {
+                                    forms.setForms_(str);
                                 }
                             }
                         }
+                        /*}
                         else{
                             Toast toast = Toast.makeText(getApplicationContext(),
                                     "Вы знаете это слово", Toast.LENGTH_SHORT);
                             toast.show();
-                        }
+                        }*/
 
                         return true;
                     case R.id.menu2:
@@ -317,13 +315,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                         } else {
                             card1 = new Card(5, tr, str);
                         }
-                        p = 0;
-                        for (int i = 0; i < Storage.cards_.size(); i++) {
-                            if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getBox() == 5) {
-                                p = 1;
-                            }
-                        }
-                        if (p != 1) {
+
                         int r1 = 0;
                         for (int i = 0; i < Storage.cards_.size(); i++) {
                             if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(tr)) {
@@ -358,11 +350,6 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                     forms.setForms_(str);
                                 }
                             }
-                        }}
-                        else{
-                            Toast toast = Toast.makeText(getApplicationContext(),
-                                    "Вы знаете это слово", Toast.LENGTH_SHORT);
-                            toast.show();
                         }
                         return true;
                     default:

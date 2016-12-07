@@ -52,6 +52,12 @@ public class DownloadCardsActivity extends AppCompatActivity implements View.OnC
                 String fileName = edText.getText().toString();
                 File sdPath = Environment.getExternalStorageDirectory();
                 File file = new File(sdPath, fileName);
+                FileReader fileInput = null;
+                try {
+                    fileInput = new FileReader(file);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
                 int k = 0;
                 try {
                     fStream = new FileInputStream(file);
@@ -63,7 +69,12 @@ public class DownloadCardsActivity extends AppCompatActivity implements View.OnC
                 }
                 if (k != 1) {
                     try {
-                        inputStream = new InputStreamReader(fStream, "Cp1251");
+                        String enc = fileInput.getEncoding();
+                        if(!enc.equals("UTF-8")){
+                            inputStream = new InputStreamReader(fStream, "Cp1251");}
+                        else{
+                            inputStream = new InputStreamReader(fStream, "utf-8");
+                        }
                     } catch (UnsupportedEncodingException e) {
 
                         e.printStackTrace();
@@ -76,33 +87,33 @@ public class DownloadCardsActivity extends AppCompatActivity implements View.OnC
                     try {
                         while ((line = bufferedReader.readLine()) != null) {
                             String[] arrayMessage = line.split(":");
-                            String[] translations = arrayMessage[1].split(", ");
+                            //String[] translations = arrayMessage[1].split(", ");
                             String[] box = arrayMessage[2].split(";");
-                            for (int i = 0; i < translations.length; i++) {
-                                int r = 0;
-                                int d = 0;
-                                for (int j = 0; j < Storage.cards_.size(); j++) {
-                                    if (Storage.cards_.get(j).getEn().equals(arrayMessage[0]) && Storage.cards_.get(j).getRu().equals(translations[i])) {
+                            // for (int i = 0; i < translations.length; i++) {
+                            int r = 0;
+                            int d = 0;
+                            for (int j = 0; j < Storage.cards_.size(); j++) {
+                                if (Storage.cards_.get(j).getEn().equals(arrayMessage[0]) && Storage.cards_.get(j).getRu().equals(arrayMessage[1])) {
+                                    r = 1;
+                                }
+                            }
+                            for (Map.Entry<String, String[]> entry : forms.getMap().entrySet()) {
+                                if (entry.getKey().equals(arrayMessage[0])) {
+                                    d = 1;
+                                }
+                                for (int j = 0; j < entry.getValue().length - 1; j++) {
+                                    if (entry.getValue()[j].equals(arrayMessage[0])) {
                                         r = 1;
                                     }
                                 }
-                                for (Map.Entry<String, String[]> entry : forms.getMap().entrySet()) {
-                                    if (entry.getKey().equals(arrayMessage[0])){
-                                        d = 1;
-                                    }
-                                    for (int j = 0; j < entry.getValue().length - 1; j++) {
-                                        if (entry.getValue()[j].equals(arrayMessage[0])) {
-                                            r = 1;
-                                        }
-                                    }
+                            }
+                            if (r != 1) {
+                                Card card = new Card(Integer.valueOf(box[0]), arrayMessage[0], arrayMessage[1]);
+                                Storage.cards_.add(card);
+                                if (d != 1) {
+                                    forms.setForms_(arrayMessage[0]);
                                 }
-                                if (r != 1) {
-                                    Card card = new Card(Integer.valueOf(box[0]), arrayMessage[0], translations[i]);
-                                    Storage.cards_.add(card);
-                                    if (d != 1) {
-                                        forms.setForms_(arrayMessage[0]);
-                                    }
-                                }
+                                //     }
                             }
                         }
                     } catch (IOException e) {

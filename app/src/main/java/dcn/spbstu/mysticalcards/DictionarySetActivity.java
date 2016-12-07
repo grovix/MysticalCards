@@ -99,19 +99,26 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
             case R.id.load:
                 LinearLayout layout = (LinearLayout) findViewById(R.id.ll);
                 TextView txt = new TextView(layout.getContext());
-                txt.setText("Введите название файла:");
+                txt.setText("Введите путь к файлу со словарем:");
                 layout.addView(txt);
                 final EditText editText = new EditText(layout.getContext());
                 layout.addView(editText);
+                TextView txt1 = new TextView(layout.getContext());
+                txt1.setText("Назовите словарь:");
+                layout.addView(txt1);
+                final EditText editText1 = new EditText(layout.getContext());
+                layout.addView(editText1);
                 Button btn = new Button(layout.getContext());
                 btn.setText("Загрузить");
                 layout.addView(btn);
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        String str = editText1.getText().toString();
                         String fileName = editText.getText().toString();
                         Dictionary dictionary = new Dictionary();
-                        dictionary.setName(fileName);
+                        dictionary.setName(str);
+
                         File sdPath = Environment.getExternalStorageDirectory();
                         File file = new File(sdPath, fileName);
                         BufferedReader bufferedReader = null;
@@ -146,7 +153,7 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
                             }
                         }
                         BufferedWriter pw1;
-                        String str = fileName;
+                        if(!str.equals("")){
                         try {
                             pw1 = new BufferedWriter(new OutputStreamWriter(openFileOutput(str, MODE_PRIVATE)));
                             for (Map.Entry<String, String[]> entry : dictionary.map_.entrySet()) {
@@ -172,7 +179,12 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
                         Intent intent = getIntent();
                         startActivity(intent);
                     }
-                });
+                    else{
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "Придумайте название для словаря!", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }});
                 break;
             default:
                 break;

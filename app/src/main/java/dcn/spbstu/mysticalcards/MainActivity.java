@@ -3,6 +3,7 @@ package dcn.spbstu.mysticalcards;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -189,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     @Override
-    public void onBackPressed() {
+   /* public void onBackPressed() {
         try {
             storage1.writeBox(this);
         } catch (IOException e) {
@@ -224,5 +225,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         System.exit(0);
+    }*/
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == (KeyEvent.KEYCODE_BACK)) {
+            try {
+                storage1.writeBox(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                storage1.writeArchive(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                forms.writeForms(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            BufferedWriter pw;
+            try {
+                pw = new BufferedWriter(new OutputStreamWriter(openFileOutput("Names_of_loaded_dictionaries", MODE_PRIVATE)));
+                for (int i = 1; i < DictionarySet.dictionaries.size(); i++) {
+                    try {
+                        pw.write(DictionarySet.dictionaries.get(i).getName());
+                        pw.write('\n');
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                pw.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            System.exit(0);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

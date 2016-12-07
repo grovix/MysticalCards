@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class StorageActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -15,6 +16,7 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
     Button box_5;
     Button archive;
     Button mainMenu;
+    Button delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
 
         mainMenu = (Button) findViewById(R.id.mainMenu);
         mainMenu.setOnClickListener(this);
+
+        delete = (Button) findViewById(R.id.delete);
+        delete.setOnClickListener(this);
     }
 
     @Override
@@ -75,6 +80,16 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
                 Intent intent6 = new Intent(this, ArchiveActivity.class);
                 startActivity(intent6);
                 break;
+            case R.id.delete:
+                Storage.cards_.clear();
+                deleteFile("box_1");
+                deleteFile("box_2");
+                deleteFile("box_3");
+                deleteFile("box_4");
+                deleteFile("box_5");
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Карточки удалены", Toast.LENGTH_SHORT);
+                toast.show();
             case R.id.mainMenu:
                 finish();
             default:
