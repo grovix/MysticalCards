@@ -49,7 +49,7 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
 
         numberOfWords = getIntent().getExtras().getInt("numOfWords");
         int boxNumber = getIntent().getExtras().getInt("boxNumber");
-
+        shuffledArray.clear();
         //Quantity of words is actual amount of words stored in the box %boxNumber%
         //Number of words is quantity of words that we want to be in our training box
         createBox(shuffledArray, boxNumber);
@@ -95,7 +95,7 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                             startActivity(intent);
                             break;
                         case R.id.guess_b_yes:
-                            shuffledArray.remove(iTraining - 1);
+                            //shuffledArray.remove(iTraining - 1);
                             box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
                             counterYes++;
                             finishActivity();
@@ -115,8 +115,8 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                             counterYes++;
                             if (iTraining >= numberOfWords)
                                 finishActivity();
-                            else
-                                shuffledArray.remove(iTraining - 1);
+                            //else
+                             //   shuffledArray.remove(iTraining - 1);
                             myText.setText(box.get(iTraining).getEn());
                             break;
                     }
@@ -132,7 +132,7 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                             startActivity(intent);
                             break;
                         case R.id.guess_b_yes:
-                            shuffledArray.remove(iTraining - 1);
+                            //shuffledArray.remove(iTraining - 1);
                             box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
                             counterYes++;
                             finishActivity();
@@ -152,8 +152,8 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                             counterYes++;
                             if (iTraining >= numberOfWords)
                                 finishActivity();
-                            else
-                                shuffledArray.remove(iTraining - 1);
+                           // else
+                                //shuffledArray.remove(iTraining - 1);
                             myText.setText(box.get(iTraining).getRu());
                             break;
                     }
@@ -270,7 +270,7 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    //Creat box with the exact number of words needed for training
+    //Create box with the exact number of words needed for training
     private int createTrainingBox(ArrayList<Card> box) {
         int j;
         for (j = 0 ; (j < shuffledArray.size()) & (j < numberOfWords); j++) {
