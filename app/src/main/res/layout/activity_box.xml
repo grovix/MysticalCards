@@ -17,8 +17,7 @@
         android:layout_height="match_parent"
         android:id="@+id/linlay"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/back4">
+        android:layout_alignParentStart="true">
 
         <Button
             android:text="Назад"
