@@ -238,6 +238,14 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                 j++;
             }
         }
+
+        Random random = new Random();
+        for (int i = 0; i < j; i++) {
+            int index = random.nextInt(i + 1);
+            Card temp = box.get(index);
+            box.set(index, box.get(i));
+            box.set(i, temp);
+        }
         return j;
     }
 }
