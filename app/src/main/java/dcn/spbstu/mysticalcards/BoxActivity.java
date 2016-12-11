@@ -17,12 +17,14 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
     Button back;
     int box = 0;
 
-    Card[] cards = new Card[Storage.cards_.size()];
+    Card[] cards;// = new Card[Storage.cards_.size()];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_box);
+
+        cards = new Card[Storage.cards_.size()];
 
         box = getIntent().getIntExtra("num", 0);
         int count = 0;
@@ -57,7 +59,7 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
 
     private void showPopupMenu(final View v, final int position) {
         PopupMenu popupMenu = new PopupMenu(this, v);
-        final Intent intent2 = new Intent(this, AddWordActivity.class);
+        final Intent intent1 = new Intent(this, EditCardActivity.class);
         popupMenu.inflate(R.menu.menu_box);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 
@@ -74,6 +76,13 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
                         Intent intent = getIntent();
                         startActivity(intent);
                         return true;
+                    case R.id.menu2:
+                        intent1.putExtra("position", position);
+                        intent1.putExtra("en", Storage.cards_.get(position).getEn().toString());
+                        intent1.putExtra("ru", Storage.cards_.get(position).getRu().toString());
+                        startActivity(intent1);
+                        finish();
+                        return true;
                     default:
                         return false;
                 }
@@ -88,8 +97,6 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.back2:
                 finish();
-                //Intent intent3 = new Intent(this, StorageActivity.class);
-                //startActivity(intent3);
                 break;
             default:
                 break;

@@ -47,8 +47,8 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
         load = (Button) findViewById(R.id.load);
         load.setOnClickListener(this);
 
-        String[] arr = new String[DictionarySet.dictionaries.size() - 1];
-        for (int i = 1; i < DictionarySet.dictionaries.size(); i++) {
+        String[] arr = new String[DictionarySet.dictionaries.size() - 2];
+        for (int i = 2; i < DictionarySet.dictionaries.size(); i++) {
             arr[i - 1] = DictionarySet.dictionaries.get(i).getName();
         }
         ListView lv = (ListView) findViewById(R.id.set);

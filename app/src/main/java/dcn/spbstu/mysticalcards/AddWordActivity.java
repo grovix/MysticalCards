@@ -193,35 +193,6 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                 }
                             }
                         });
-                       /* if (direction.getText().equals("EN|RU")) {
-                            Button addForm = new Button(layout.getContext());
-                            addForm.setText("Добавить в формы");
-                            layout.addView(addForm);
-                            addForm.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    int d = 0;
-                                    for (Map.Entry<String, String[]> entry : Forms.forms_.entrySet()) {
-                                        if (entry.getKey().equals(str)) {
-                                            d = 1;
-                                        }
-                                        if (d != 1) {
-                                            for (int j = 0; j < entry.getValue().length - 1; j++) {
-                                                if (entry.getValue()[j].equals(str)) {
-                                                    d = 1;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    if (d != 1) {
-                                        forms.setForms_(str);
-                                    }
-                                    Toast toast = Toast.makeText(getApplicationContext(),
-                                            "Cозданы формы слова", Toast.LENGTH_SHORT);
-                                    toast.show();
-                                }
-                            });
-                        }*/
                     }
                 }
                 break;
@@ -257,17 +228,10 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                         } else {
                             card = new Card(1, tr, str);
                         }
-                        // int p = 0;
-                       /* for (int i = 0; i < Storage.cards_.size(); i++) {
-                            if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getBox() == 5) {
-                                p = 1;
-                            }
-                        }*/
                         int r = 0;
-                       /* if (p != 1) {*/
 
                         for (int i = 0; i < Storage.cards_.size(); i++) {
-                            if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(tr)) {
+                            if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(tr) || Storage.cards_.get(i).getEn().equals(tr) && Storage.cards_.get(i).getRu().equals(str)) {
                                 r = 1;
                             }
                         }
@@ -300,12 +264,6 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                 }
                             }
                         }
-                        /*}
-                        else{
-                            Toast toast = Toast.makeText(getApplicationContext(),
-                                    "Вы знаете это слово", Toast.LENGTH_SHORT);
-                            toast.show();
-                        }*/
 
                         return true;
                     case R.id.menu2:
@@ -318,7 +276,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
 
                         int r1 = 0;
                         for (int i = 0; i < Storage.cards_.size(); i++) {
-                            if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(tr)) {
+                            if (Storage.cards_.get(i).getEn().equals(str) && Storage.cards_.get(i).getRu().equals(tr) || Storage.cards_.get(i).getEn().equals(tr) && Storage.cards_.get(i).getRu().equals(str)) {
                                 r1 = 1;
                             }
                         }

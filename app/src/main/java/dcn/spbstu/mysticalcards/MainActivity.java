@@ -41,7 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (DictionarySet.dictionaries.isEmpty()) {
             Dictionary dictionary = new Dictionary();
             dictionary.setName("slovar.txt");
+            Dictionary dictionary1 = new Dictionary();
+            dictionary1.setName("slovar-rus.txt");
             DictionarySet.dictionaries.add(dictionary);
+            DictionarySet.dictionaries.add(dictionary1);
             for (int i = 0; i < DictionarySet.dictionaries.size(); i++) {
                 try {
                     DictionarySet.dictionaries.get(i).read(this);

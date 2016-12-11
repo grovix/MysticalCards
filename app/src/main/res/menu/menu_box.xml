@@ -4,5 +4,8 @@
         <item
             android:id="@+id/menu1"
             android:title="Удалить из коробки"/>
+        <item
+            android:id="@+id/menu2"
+            android:title="Редактировать"/>
     </group>
 </menu>
