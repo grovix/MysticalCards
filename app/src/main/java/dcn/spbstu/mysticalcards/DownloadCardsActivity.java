@@ -119,10 +119,10 @@ public class DownloadCardsActivity extends AppCompatActivity implements View.OnC
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Карточки добавлены", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Карточки добавлены", Toast.LENGTH_SHORT);
-                toast.show();
                 break;
             default:
                 break;

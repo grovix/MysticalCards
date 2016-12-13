@@ -151,7 +151,6 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
                                 String[] translations = entry.getValue().split("; ");
                                 dictionary.map_.put(entry.getKey(), translations);
                             }
-                        }
                         BufferedWriter pw1;
                         if(!str.equals("")){
                         try {
@@ -183,7 +182,7 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Придумайте название для словаря!", Toast.LENGTH_SHORT);
                         toast.show();
-                    }
+                    }}
                 }});
                 break;
             default:
