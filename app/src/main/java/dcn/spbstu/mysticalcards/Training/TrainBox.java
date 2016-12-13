@@ -94,7 +94,8 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                         break;
                     case R.id.guess_b_yes:
                         counterYes++;
-                        box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
+                        box.get(iTraining - 1).setBox(
+                                (box.get(iTraining - 1).getBox()==5) ? 5 : box.get(iTraining - 1).getBox() + 1);
                         if (iTraining >= numberOfWords)
                             finishActivity();
                         else
@@ -112,7 +113,8 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                         break;
                     case R.id.guess_b_yes:
                         counterYes++;
-                        box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
+                        box.get(iTraining - 1).setBox(
+                                (box.get(iTraining - 1).getBox()==5) ? 5 : box.get(iTraining - 1).getBox() + 1);
                         if (iTraining >= numberOfWords)
                             finishActivity();
                         else
