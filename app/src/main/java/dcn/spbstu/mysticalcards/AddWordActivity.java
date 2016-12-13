@@ -66,7 +66,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                                 lParams1.height = 200;
                                 final String[] translations = entry.getValue();
                                 TextView txtV = (TextView) findViewById(R.id.download);
-                                txtV.setText("Количество переводов слова \"" + str + "\" в словаре " + DictionarySet.dictionaries.get(i).getName() + " - " + translations.length);
+                                txtV.setText("Количество переводов слова \"" + str + "\" в словаре \"" + DictionarySet.dictionaries.get(i).getName() + "\" - " + translations.length);
                                 String[] arr = new String[translations.length];
                                 for (int j = 0; j < translations.length; j++) {
                                     arr[j] = translations[j];

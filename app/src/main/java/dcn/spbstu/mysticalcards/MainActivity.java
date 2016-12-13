@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 BufferedWriter pw;
                 try {
                     pw = new BufferedWriter(new OutputStreamWriter(openFileOutput("Names_of_loaded_dictionaries", MODE_PRIVATE)));
-                    for (int i = 1; i < DictionarySet.dictionaries.size(); i++) {
+                    for (int i = 2; i < DictionarySet.dictionaries.size(); i++) {
                         try {
                             pw.write(DictionarySet.dictionaries.get(i).getName());
                             pw.write('\n');
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             BufferedWriter pw;
             try {
                 pw = new BufferedWriter(new OutputStreamWriter(openFileOutput("Names_of_loaded_dictionaries", MODE_PRIVATE)));
-                for (int i = 1; i < DictionarySet.dictionaries.size(); i++) {
+                for (int i = 2; i < DictionarySet.dictionaries.size(); i++) {
                     try {
                         pw.write(DictionarySet.dictionaries.get(i).getName());
                         pw.write('\n');
