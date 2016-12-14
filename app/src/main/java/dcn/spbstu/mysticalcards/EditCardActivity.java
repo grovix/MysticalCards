@@ -25,7 +25,7 @@ public class EditCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_card);
 
-        position = getIntent().getIntExtra("position", -1);
+        position = getIntent().getIntExtra("position", 0);
         word = getIntent().getStringExtra("en");
         translation = getIntent().getStringExtra("ru");
         EditText editText1 = (EditText) findViewById(R.id.editword);

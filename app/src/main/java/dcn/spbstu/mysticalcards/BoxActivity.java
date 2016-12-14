@@ -67,8 +67,18 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.menu1:
-                        Storage.cards_.remove(cards[position]);
-                        Forms.forms_.remove(cards[position].en_);
+                        int k = 0;
+                        int d = 0;
+                        for(int i = 0; i < cards.length; i++){
+                            if(cards[i].getBox() == box){
+                                k++;
+                            }
+                            if(k - 1 == position){
+                                d = i;
+                            }
+                        }
+                        Storage.cards_.remove(cards[d]);
+                        Forms.forms_.remove(cards[d].en_);
                         Toast.makeText(getApplicationContext(),
                                 "Слово удалено",
                                 Toast.LENGTH_SHORT).show();
@@ -77,9 +87,19 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
                         startActivity(intent);
                         return true;
                     case R.id.menu2:
-                        intent1.putExtra("position", position);
-                        intent1.putExtra("en", Storage.cards_.get(position).getEn().toString());
-                        intent1.putExtra("ru", Storage.cards_.get(position).getRu().toString());
+                        int k1 = 0;
+                        int d1 = 0;
+                        for(int i = 0; i < cards.length; i++){
+                            if(cards[i].getBox() == box){
+                                k1++;
+                            }
+                            if(k1 - 1 == position){
+                                d1 = i;
+                            }
+                        }
+                        intent1.putExtra("position", d1);
+                        intent1.putExtra("en", Storage.cards_.get(d1).getEn().toString());
+                        intent1.putExtra("ru", Storage.cards_.get(d1).getRu().toString());
                         startActivity(intent1);
                         finish();
                         return true;
