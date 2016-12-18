@@ -67,18 +67,8 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.menu1:
-                        int k = 0;
-                        int d = 0;
-                        for(int i = 0; i < cards.length; i++){
-                            if(cards[i].getBox() == box){
-                                k++;
-                            }
-                            if(k - 1 == position){
-                                d = i;
-                            }
-                        }
-                        Storage.cards_.remove(cards[d]);
-                        Forms.forms_.remove(cards[d].en_);
+                        Storage.cards_.remove(cards[position]);
+                        Forms.forms_.remove(cards[position].en_);
                         Toast.makeText(getApplicationContext(),
                                 "Слово удалено",
                                 Toast.LENGTH_SHORT).show();
@@ -89,8 +79,8 @@ public class BoxActivity extends AppCompatActivity implements View.OnClickListen
                     case R.id.menu2:
                         int k1 = 0;
                         int d1 = 0;
-                        for(int i = 0; i < cards.length; i++){
-                            if(cards[i].getBox() == box){
+                        for(int i = 0; i < Storage.cards_.size() && d1 == 0; i++){
+                            if(Storage.cards_.get(i).getBox() == box){
                                 k1++;
                             }
                             if(k1 - 1 == position){
