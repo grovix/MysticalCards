@@ -69,12 +69,12 @@ public class DownloadCardsActivity extends AppCompatActivity implements View.OnC
                 }
                 if (k != 1) {
                     try {
-                        String enc = fileInput.getEncoding();
-                        if(!enc.equals("UTF-8")){
-                            inputStream = new InputStreamReader(fStream, "Cp1251");}
-                        else{
-                            inputStream = new InputStreamReader(fStream, "utf-8");
-                        }
+                       // String enc = fileInput.getEncoding();
+                        //if(!enc.equals("UTF-8")){
+                          //  inputStream = new InputStreamReader(fStream, "Cp1251");}
+                        //else{
+                            inputStream = new InputStreamReader(fStream, "UTF-8");
+                       // }
                     } catch (UnsupportedEncodingException e) {
 
                         e.printStackTrace();
@@ -119,10 +119,10 @@ public class DownloadCardsActivity extends AppCompatActivity implements View.OnC
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Карточки добавлены", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Карточки добавлены", Toast.LENGTH_SHORT);
-                toast.show();
                 break;
             default:
                 break;

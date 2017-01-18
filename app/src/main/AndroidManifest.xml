@@ -34,7 +34,8 @@
         <activity android:name=".AddWordVariants" />
         <activity android:name=".AddFromTextActivity" />
         <activity android:name=".DownloadCardsActivity" />
-        <activity android:name=".AddFromDownloadedTextActivity"></activity>
+        <activity android:name=".AddFromDownloadedTextActivity" />
+        <activity android:name=".EditCardActivity"></activity>
     </application>
 
 </manifest>

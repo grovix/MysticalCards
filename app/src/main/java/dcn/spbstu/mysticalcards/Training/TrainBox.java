@@ -52,8 +52,8 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
         shuffledArray.clear();
         //Quantity of words is actual amount of words stored in the box %boxNumber%
         //Number of words is quantity of words that we want to be in our training box
-        createBox(shuffledArray, boxNumber);
-        int quantityOfWords = createTrainingBox(box);
+        createBox(shuffledArray);
+        int quantityOfWords = createTrainingBox(box, boxNumber);
         if (quantityOfWords == 0) {
             Toast.makeText(this, "Box №" + boxNumber + " is empty", Toast.LENGTH_LONG).show();
             finish();
@@ -80,83 +80,46 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
         guessYes.setOnClickListener(this);
     }
 
-
     public void onClick(View v) {
 
         iTraining++;
         switch (TYPE_OF_TRAINING) {
             case EN_RU:
-                if (iTraining >= numberOfWords) {
-                    switch (v.getId()) {
-                        case R.id.guess_b_no:
-                            counterNo++;
-                            Intent intent = new Intent(this, TrainBox_rev_side.class);
-                            intent.putExtra("translation", box.get(iTraining - 1).getRu());
-                            startActivity(intent);
-                            break;
-                        case R.id.guess_b_yes:
-                            //shuffledArray.remove(iTraining - 1);
-                            box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
-                            counterYes++;
+                switch (v.getId()) {
+                    case R.id.guess_b_no:
+                        counterNo++;
+                        Intent intent = new Intent(this, TrainBox_rev_side.class);
+                        intent.putExtra("translation", box.get(iTraining - 1).getRu());
+                        startActivity(intent);
+                        break;
+                    case R.id.guess_b_yes:
+                        counterYes++;
+                        box.get(iTraining - 1).setBox(
+                                (box.get(iTraining - 1).getBox()==5) ? 5 : box.get(iTraining - 1).getBox() + 1);
+                        if (iTraining >= numberOfWords)
                             finishActivity();
-                            break;
-                    }
-                } else {
-                    switch (v.getId()) {
-                        case R.id.guess_b_no:
-                            counterNo++;
-                            Intent intent = new Intent(this, TrainBox_rev_side.class);
-                            intent.putExtra("translation", box.get(iTraining - 1).getRu());
-                            startActivity(intent);
-                            break;
-                        case R.id.guess_b_yes:
-
-                            box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
-                            counterYes++;
-                            if (iTraining >= numberOfWords)
-                                finishActivity();
-                            //else
-                             //   shuffledArray.remove(iTraining - 1);
+                        else
                             myText.setText(box.get(iTraining).getEn());
-                            break;
-                    }
+                        break;
                 }
                 break;
             case RU_EN:
-                if (iTraining >= numberOfWords) {
-                    switch (v.getId()) {
-                        case R.id.guess_b_no:
-                            counterNo++;
-                            Intent intent = new Intent(this, TrainBox_rev_side.class);
-                            intent.putExtra("translation", box.get(iTraining - 1).getEn());
-                            startActivity(intent);
-                            break;
-                        case R.id.guess_b_yes:
-                            //shuffledArray.remove(iTraining - 1);
-                            box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
-                            counterYes++;
+                switch (v.getId()) {
+                    case R.id.guess_b_no:
+                        counterNo++;
+                        Intent intent = new Intent(this, TrainBox_rev_side.class);
+                        intent.putExtra("translation", box.get(iTraining - 1).getEn());
+                        startActivity(intent);
+                        break;
+                    case R.id.guess_b_yes:
+                        counterYes++;
+                        box.get(iTraining - 1).setBox(
+                                (box.get(iTraining - 1).getBox()==5) ? 5 : box.get(iTraining - 1).getBox() + 1);
+                        if (iTraining >= numberOfWords)
                             finishActivity();
-                            break;
-                    }
-                } else {
-                    switch (v.getId()) {
-                        case R.id.guess_b_no:
-                            counterNo++;
-                            Intent intent = new Intent(this, TrainBox_rev_side.class);
-                            intent.putExtra("translation", box.get(iTraining - 1).getEn());
-                            startActivity(intent);
-                            break;
-                        case R.id.guess_b_yes:
-
-                            box.get(iTraining - 1).setBox(box.get(iTraining - 1).getBox() + 1);
-                            counterYes++;
-                            if (iTraining >= numberOfWords)
-                                finishActivity();
-                           // else
-                                //shuffledArray.remove(iTraining - 1);
+                        else
                             myText.setText(box.get(iTraining).getRu());
-                            break;
-                    }
+                        break;
                 }
                 break;
         }
@@ -172,10 +135,9 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
                 box.clear();
                 numberOfWords = counterNo;
                 counterNo = 0;
-                if ((createTrainingBox(box)) == 0) {
+                if ((createTrainingBox(box, getIntent().getExtras().getInt("boxNumber"))) == 0) {
                     finishActivity();
                 }
-
                 switch (TYPE_OF_TRAINING) {
                     case EN_RU:
                         myText.setText(box.get(iTraining).getEn());
@@ -198,7 +160,6 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
-
     public void finishActivity() {
 
         know = counterYes;
@@ -207,11 +168,6 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
             this.onResume();
             return;
         }
-
-        for(int i = 0; i < dont_know; i++) {
-            box.get(i).setBox(1);
-        }
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Знаете слов: " + know + "\nНе знаете слов: " + dont_know).setTitle("Результат тренировки")
                 .setPositiveButton("Я молодец!", new DialogInterface.OnClickListener() {
@@ -250,35 +206,49 @@ public class TrainBox extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    //Add cards from storage which are in the %boxNumber% box then shuffle them in random order.
-    private void createBox(ArrayList<Card> shuffledArray, int boxNumber) {
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        for (int i = 0; i < dont_know; i++) {
+            box.get(i).setBox(1);
+        }
+    }
+
+    //Add all cards from the storage then shuffle them in a random order.
+    private void createBox(ArrayList<Card> shuffledArray) {
         Storage storage = new Storage();
 
         for (int i = 0; i < storage.getSize(); i++) {
-            if (storage.getCard(i).getBox() == boxNumber) {
-                shuffledArray.add(storage.getCard(i));
-            }
+            shuffledArray.add(storage.getCard(i));
         }
 
         Random random = new Random();
-        for(int i = 0; i < shuffledArray.size(); i++) {
+        for (int i = 0; i < shuffledArray.size(); i++) {
             int index = random.nextInt(i + 1);
             Card temp = shuffledArray.get(index);
             shuffledArray.set(index, shuffledArray.get(i));
             shuffledArray.set(i, temp);
         }
-
     }
 
-    //Create box with the exact number of words needed for training
-    private int createTrainingBox(ArrayList<Card> box) {
-        int j;
-        for (j = 0 ; (j < shuffledArray.size()) & (j < numberOfWords); j++) {
-            box.add(shuffledArray.get(j));
+    //Create box %boxNumber% with the exact number of words needed for training and returns actual quantity of words that was added
+    private int createTrainingBox(ArrayList<Card> box, int boxNumber) {
+        int j = 0;
+        for (int i = 0; (i < shuffledArray.size()) & (j < numberOfWords); i++) {
+            if (shuffledArray.get(i).getBox() == boxNumber) {
+                box.add(shuffledArray.get(i));
+                j++;
+            }
         }
 
+        Random random = new Random();
+        for (int i = 0; i < j; i++) {
+            int index = random.nextInt(i + 1);
+            Card temp = box.get(index);
+            box.set(index, box.get(i));
+            box.set(i, temp);
+        }
         return j;
     }
-
 }
 

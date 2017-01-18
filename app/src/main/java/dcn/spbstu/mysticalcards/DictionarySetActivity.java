@@ -47,9 +47,9 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
         load = (Button) findViewById(R.id.load);
         load.setOnClickListener(this);
 
-        String[] arr = new String[DictionarySet.dictionaries.size() - 1];
-        for (int i = 1; i < DictionarySet.dictionaries.size(); i++) {
-            arr[i - 1] = DictionarySet.dictionaries.get(i).getName();
+        String[] arr = new String[DictionarySet.dictionaries.size() - 2];
+        for (int i = 2; i < DictionarySet.dictionaries.size(); i++) {
+            arr[i - 2] = DictionarySet.dictionaries.get(i).getName();
         }
         ListView lv = (ListView) findViewById(R.id.set);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -71,9 +71,9 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.menu1:
-                        String name = DictionarySet.dictionaries.get(position + 1).getName();
+                        String name = DictionarySet.dictionaries.get(position + 2).getName();
                         deleteFile(name);
-                        DictionarySet.dictionaries.remove(position + 1);
+                        DictionarySet.dictionaries.remove(position + 2);
                         Toast.makeText(getApplicationContext(),
                                 "Словарь удален",
                                 Toast.LENGTH_SHORT).show();
@@ -151,7 +151,6 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
                                 String[] translations = entry.getValue().split("; ");
                                 dictionary.map_.put(entry.getKey(), translations);
                             }
-                        }
                         BufferedWriter pw1;
                         if(!str.equals("")){
                         try {
@@ -183,7 +182,7 @@ public class DictionarySetActivity extends AppCompatActivity implements View.OnC
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Придумайте название для словаря!", Toast.LENGTH_SHORT);
                         toast.show();
-                    }
+                    }}
                 }});
                 break;
             default:
