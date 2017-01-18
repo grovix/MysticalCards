@@ -42,7 +42,6 @@
         android:text="Загрузить"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:id="@+id/download"
         android:layout_below="@+id/edtext2"
         android:layout_alignParentLeft="true"
